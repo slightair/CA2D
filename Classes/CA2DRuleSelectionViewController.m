@@ -159,23 +159,23 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	CA2DSettingsViewController *settingsViewController = (CA2DSettingsViewController *)[self.navigationController.viewControllers objectAtIndex:0];
-	CA2DSettings *settings = [CA2DSettings sharedSettings];
-	
-	NSInteger selectedRuleIndex = [[settings objectForKey:kCA2DSettingRuleIndex] integerValue];
-	if (indexPath.row != selectedRuleIndex) {
-		NSDictionary *ruleDict = [rules_ objectAtIndex:indexPath.row];
-		
-		UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedRuleIndex inSection:kRuleSection]];
-		UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
-		prevCell.accessoryType = UITableViewCellAccessoryNone;
-		selectedCell.accessoryType = UITableViewCellAccessoryCheckmark;
-		
-		[settings setObject:[ruleDict objectForKey:@"rule"] forKey:kCA2DSettingRule];
-		[settings setObject:[NSNumber numberWithInteger:indexPath.row] forKey:kCA2DSettingRuleIndex];
-		
-		[settingsViewController.tableView reloadData];
-	}
+  CA2DSettingsViewController *settingsViewController = (CA2DSettingsViewController *)[self.navigationController.viewControllers objectAtIndex:0];
+  CA2DSettings *settings = [CA2DSettings sharedSettings];
+  
+  NSInteger selectedRuleIndex = [[settings objectForKey:kCA2DSettingRuleIndex] integerValue];
+  if (indexPath.row != selectedRuleIndex) {
+    NSDictionary *ruleDict = [rules_ objectAtIndex:indexPath.row];
+    
+    UITableViewCell *prevCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selectedRuleIndex inSection:kRuleSection]];
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    prevCell.accessoryType = UITableViewCellAccessoryNone;
+    selectedCell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    [settings setObject:[ruleDict objectForKey:@"rule"] forKey:kCA2DSettingRule];
+    [settings setObject:[NSNumber numberWithInteger:indexPath.row] forKey:kCA2DSettingRuleIndex];
+    
+    [settingsViewController.tableView reloadData];
+  }
 }
 
 

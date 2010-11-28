@@ -14,8 +14,8 @@
 
 enum Settings {
   kSettingRule,
-  kNumberOfSettings
-};
+    kNumberOfSettings
+  };
 
 @implementation CA2DSettingsViewController
 
@@ -24,16 +24,16 @@ enum Settings {
 #pragma mark Initialization
 
 - (id)initWithStyle:(UITableViewStyle)style {
-	// Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-	self = [super initWithStyle:style];
-	
-	if (self) {
-		// Custom initialization.
-		self.title = @"Settings";
-		self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
-	}
-	
-	return self;
+  // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+  self = [super initWithStyle:style];
+  
+  if (self) {
+    // Custom initialization.
+    self.title = @"Settings";
+    self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
+  }
+  
+  return self;
 }
 
 
@@ -106,12 +106,12 @@ enum Settings {
   // Configure the cell...
   switch (indexPath.row) {
     case kSettingRule:
-      cell.textLabel.text = @"Rule";
-      cell.detailTextLabel.text = [[CA2DSettings sharedSettings] objectForKey:kCA2DSettingRule];
+    cell.textLabel.text = @"Rule";
+    cell.detailTextLabel.text = [[CA2DSettings sharedSettings] objectForKey:kCA2DSettingRule];
 
-      break;
+    break;
     default:
-      break;
+    break;
   }
 
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -133,14 +133,14 @@ enum Settings {
 /*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-
+  
   if (editingStyle == UITableViewCellEditingStyleDelete) {
-      // Delete the row from the data source.
-      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-  }   
+  // Delete the row from the data source.
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+  }
   else if (editingStyle == UITableViewCellEditingStyleInsert) {
-      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-  }   
+    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+  }
 }
 */
 
@@ -165,18 +165,18 @@ enum Settings {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.row) {
-		case kSettingRule:
-			if (!ruleSelectionViewController_) {
-				ruleSelectionViewController_ = [[CA2DRuleSelectionViewController alloc] initWithStyle:UITableViewStylePlain];
-			}
-			
-			[self.navigationController pushViewController:ruleSelectionViewController_ animated:YES];
-			
-			break;
-		default:
-			break;
-	}
+  switch (indexPath.row) {
+    case kSettingRule:
+    if (!ruleSelectionViewController_) {
+      ruleSelectionViewController_ = [[CA2DRuleSelectionViewController alloc] initWithStyle:UITableViewStylePlain];
+    }
+
+    [self.navigationController pushViewController:ruleSelectionViewController_ animated:YES];
+
+    break;
+    default:
+    break;
+  }
 }
 
 

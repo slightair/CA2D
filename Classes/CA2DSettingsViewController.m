@@ -14,8 +14,8 @@
 
 enum Settings {
   kSettingRule,
-    kNumberOfSettings
-  };
+  kNumberOfSettings
+};
 
 @implementation CA2DSettingsViewController
 

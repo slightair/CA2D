@@ -10,7 +10,7 @@
 #import "CA2DRuleSelectionViewController.h"
 
 @interface CA2DSettingsViewController : UITableViewController {
-	CA2DRuleSelectionViewController *ruleSelectionViewController_;
+  CA2DRuleSelectionViewController *ruleSelectionViewController_;
 }
 
 - (void)close;

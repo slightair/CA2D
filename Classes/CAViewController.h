@@ -10,16 +10,16 @@
 #import "CAView.h"
 
 @interface CAViewController : UIViewController {
-	NSInteger worldLength_;
-	CGSize worldSize_;
-	CGFloat cellSize_;
-	NSData *cells_;
-	NSString *rule_;
-	NSUInteger born_;
-	NSUInteger survive_;
-	NSUInteger numConditions_;
-	NSTimer *timer_;
-	BOOL isNeedRestart_;
+  NSInteger worldLength_;
+  CGSize worldSize_;
+  CGFloat cellSize_;
+  NSData *cells_;
+  NSString *rule_;
+  NSUInteger born_;
+  NSUInteger survive_;
+  NSUInteger numConditions_;
+  NSTimer *timer_;
+  BOOL isNeedRestart_;
 }
 
 - (void)makeWorldWithSize:(CGSize)worldSize cellSize:(CGFloat)cellSize rule:(NSString *)rule;

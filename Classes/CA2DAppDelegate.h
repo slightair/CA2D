@@ -10,8 +10,8 @@
 #import "CA2DMainViewController.h"
 
 @interface CA2DAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-	CA2DMainViewController *mainViewController_;
+  UIWindow *window;
+  CA2DMainViewController *mainViewController_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

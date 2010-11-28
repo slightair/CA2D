@@ -12,13 +12,13 @@
 
 
 @interface CA2DMainViewController : UIViewController {
-	UIToolbar *toolbar_;
-	UIBarButtonItem *playButtonItem_;
-	UIBarButtonItem *pauseButtonItem_;
-	
-	CAViewController *caViewController_;
-	CA2DSettingsViewController *settingsViewController_;
-	UINavigationController *navigationController_;
+  UIToolbar *toolbar_;
+  UIBarButtonItem *playButtonItem_;
+  UIBarButtonItem *pauseButtonItem_;
+  
+  CAViewController *caViewController_;
+  CA2DSettingsViewController *settingsViewController_;
+  UINavigationController *navigationController_;
 }
 
 - (void)clearWorld;

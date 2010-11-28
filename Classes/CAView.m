@@ -16,29 +16,29 @@
 @synthesize numConditions = numConditions_;
 
 enum CMYKComponents {
-	kCyan,
-	kMagenta,
-	kYellow,
-	kBlack,
-	kNumberOfCMYKComponents
+  kCyan,
+  kMagenta,
+  kYellow,
+  kBlack,
+  kNumberOfCMYKComponents
 };
 
 - (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code.
-		cells_ = NULL;
-		worldSize_ = CGSizeZero;
-		cellSize_ = 0.0;
-		numConditions_ = 0;
-    }
-    return self;
+  self = [super initWithFrame:frame];
+  if (self) {
+    // Initialization code.
+    cells_ = NULL;
+    worldSize_ = CGSizeZero;
+    cellSize_ = 0.0;
+    numConditions_ = 0;
+  }
+  return self;
 }
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // Drawing code.
+  // Drawing code.
 	
 	size_t width = (size_t)worldSize_.width;
 	size_t height = (size_t)worldSize_.height;
@@ -73,16 +73,16 @@ enum CMYKComponents {
 	CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, raw, rawSize, NULL);
 	
 	CGImageRef image = CGImageCreate(width,
-									 height,
-									 bitsPerComponent,
-									 bitsPerPixel,
-									 bytesPerRow,
-									 colorSpaceCMYK,
-									 kCGImageAlphaNone | kCGBitmapByteOrderDefault,
-									 provider,
-									 NULL,
-									 NO,
-									 kCGRenderingIntentDefault);
+	                                 height,
+                									 bitsPerComponent,
+                									 bitsPerPixel,
+                									 bytesPerRow,
+                									 colorSpaceCMYK,
+                									 kCGImageAlphaNone | kCGBitmapByteOrderDefault,
+                									 provider,
+                									 NULL,
+                									 NO,
+                									 kCGRenderingIntentDefault);
 	
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
 	CGContextTranslateCTM(ctx, 0.0, self.frame.size.height);
@@ -96,7 +96,7 @@ enum CMYKComponents {
 }
 
 - (void)dealloc {
-    [super dealloc];
+  [super dealloc];
 }
 
 

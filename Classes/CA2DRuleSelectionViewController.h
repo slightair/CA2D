@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CA2DRuleSelectionViewController : UITableViewController {
-	NSArray	*rules_;
+  NSArray	*rules_;
 }
 
 @end

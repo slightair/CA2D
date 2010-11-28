@@ -10,10 +10,10 @@
 
 
 @interface CAView : UIView {
-	unsigned char *cells_;
-	CGSize worldSize_;
-	CGFloat cellSize_;
-	NSUInteger numConditions_;
+  unsigned char *cells_;
+  CGSize worldSize_;
+  CGFloat cellSize_;
+  NSUInteger numConditions_;
 }
 
 @property (nonatomic) unsigned char *cells;

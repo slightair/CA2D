@@ -11,9 +11,9 @@
 #define kUpdateInterval 0.05
 
 enum ruleParams {
-	kSurvive,
-	kBorn,
-	kNumConditions
+  kSurvive,
+  kBorn,
+  kNumConditions
 };
 
 @implementation CAViewController
@@ -23,36 +23,38 @@ enum ruleParams {
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    // Custom initialization
+  }
+  return self;
 }
 */
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
-	self.view = [[[CAView alloc] initWithFrame:CGRectZero] autorelease];
+  self.view = [[[CAView alloc] initWithFrame:CGRectZero] autorelease];
 }
 
+/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    [super viewDidLoad];
-	
+  [super viewDidLoad];
+
 }
+*/
 
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+  // Return YES for supported orientations
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+  [super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
 }
@@ -64,10 +66,10 @@ enum ruleParams {
 
 
 - (void)dealloc {
-	[cells_ release];
-	[rule_ release];
-	
-    [super dealloc];
+  [cells_ release];
+  [rule_ release];
+  
+  [super dealloc];
 }
 
 - (void)makeWorldWithSize:(CGSize)worldSize cellSize:(CGFloat)cellSize rule:(NSString *)rule {
@@ -85,20 +87,20 @@ enum ruleParams {
 }
 
 - (void)playWorld {
-	timer_ = [NSTimer scheduledTimerWithTimeInterval:kUpdateInterval target:self selector:@selector(tickWorld:) userInfo:nil repeats:YES];
+  timer_ = [NSTimer scheduledTimerWithTimeInterval:kUpdateInterval target:self selector:@selector(tickWorld:) userInfo:nil repeats:YES];
 }
 
 - (void)pauseWorld {
-	[timer_ invalidate];
-	timer_ = nil;
+  [timer_ invalidate];
+  timer_ = nil;
 }
 
 - (void)clearWorld {
-	unsigned char *raw = (unsigned char *)malloc(worldLength_);
-	int i;
-	
+  unsigned char *raw = (unsigned char *)malloc(worldLength_);
+  int i;
+  
 	for(i=0;i<worldLength_;i++){
-		raw[i] = 0;
+	  raw[i] = 0;
 	}
 	
 	[cells_ autorelease];

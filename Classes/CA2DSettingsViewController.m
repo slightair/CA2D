@@ -13,8 +13,8 @@
 #define kNumberOfSection 1
 
 enum Settings {
-	kSettingRule,
-	kNumberOfSettings
+  kSettingRule,
+  kNumberOfSettings
 };
 
 @implementation CA2DSettingsViewController
@@ -42,38 +42,38 @@ enum Settings {
 
 /*
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 */
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+  [super viewWillAppear:animated];
 }
 */
 /*
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+  [super viewDidAppear:animated];
 }
 */
 /*
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+  [super viewWillDisappear:animated];
 }
 */
 /*
 - (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+  [super viewDidDisappear:animated];
 }
 */
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+  // Return YES for supported orientations.
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
 
@@ -82,50 +82,50 @@ enum Settings {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return kNumberOfSection;
+  // Return the number of sections.
+  return kNumberOfSection;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return kNumberOfSettings;
+  // Return the number of rows in the section.
+  return kNumberOfSettings;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Configure the cell...
-	switch (indexPath.row) {
-		case kSettingRule:
-			cell.textLabel.text = @"Rule";
-			cell.detailTextLabel.text = [[CA2DSettings sharedSettings] objectForKey:kCA2DSettingRule];
-			
-			break;
-		default:
-			break;
-	}
-	
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    return cell;
+
+  static NSString *CellIdentifier = @"Cell";
+
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+  }
+
+  // Configure the cell...
+  switch (indexPath.row) {
+    case kSettingRule:
+      cell.textLabel.text = @"Rule";
+      cell.detailTextLabel.text = [[CA2DSettings sharedSettings] objectForKey:kCA2DSettingRule];
+
+      break;
+    default:
+      break;
+  }
+
+  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+  return cell;
 }
 
 
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+  // Return NO if you do not want the specified item to be editable.
+  return YES;
 }
 */
 
@@ -133,14 +133,14 @@ enum Settings {
 /*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
+
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+      // Delete the row from the data source.
+      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+  }   
+  else if (editingStyle == UITableViewCellEditingStyleInsert) {
+      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+  }   
 }
 */
 
@@ -155,8 +155,8 @@ enum Settings {
 /*
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+  // Return NO if you do not want the item to be re-orderable.
+  return YES;
 }
 */
 
@@ -184,30 +184,30 @@ enum Settings {
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc. that aren't in use.
+  // Releases the view if it doesn't have a superview.
+  [super didReceiveMemoryWarning];
+
+  // Relinquish ownership any cached data, images, etc. that aren't in use.
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+  // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
+  // For example: self.myOutlet = nil;
 }
 
 
 - (void)dealloc {
-	[ruleSelectionViewController_ release];
-    [super dealloc];
+  [ruleSelectionViewController_ release];
+  [super dealloc];
 }
 
 
 - (void)close {
-	CA2DMainViewController *mainViewController = (CA2DMainViewController *)self.navigationController.parentViewController;
-	mainViewController.rule = [[CA2DSettings sharedSettings] objectForKey:kCA2DSettingRule];
-	[mainViewController shuffleWorld];
-	
-	[self.navigationController dismissModalViewControllerAnimated:YES];
+  CA2DMainViewController *mainViewController = (CA2DMainViewController *)self.navigationController.parentViewController;
+  mainViewController.rule = [[CA2DSettings sharedSettings] objectForKey:kCA2DSettingRule];
+  [mainViewController shuffleWorld];
+
+  [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 @end

@@ -13,7 +13,7 @@
 #define kCA2DSettingRuleIndex @"RuleIndex"
 
 @interface CA2DSettings : NSObject {
-	NSMutableDictionary *settings_;
+  NSMutableDictionary *settings_;
 }
 
 + (id)sharedSettings;

@@ -14,6 +14,7 @@
   CGSize worldSize_;
   CGFloat cellSize_;
   NSUInteger numConditions_;
+  CGFloat scale_;
 }
 
 @property (nonatomic) unsigned char *cells;

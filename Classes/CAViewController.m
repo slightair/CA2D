@@ -352,14 +352,6 @@ enum ruleParams {
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  UITouch *touch = [touches anyObject];
-  unsigned char *cells = (unsigned char *)[cells_ bytes];
-  CGPoint point = [touch locationInView:self.view];
-  NSInteger index = (int)(point.x / cellSize_) + (int)(point.y / cellSize_) * (int)worldSize_.width;
-  cells[index] = (unsigned char)(numConditions_ - 1);
-  
-  [self.view setNeedsDisplay];
-  
   if (isNeedRestart_) {
     [self playWorld];
     

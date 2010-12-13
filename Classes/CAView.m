@@ -33,12 +33,6 @@ enum CMYKComponents {
     worldSize_ = CGSizeZero;
     cellSize_ = 0.0;
     numConditions_ = 0;
-    if ([self respondsToSelector:@selector(contentScaleFactor)]) {
-      scale_ = [self contentScaleFactor];
-    }
-    else {
-      scale_ = kDefaultScale;
-    }
   }
   return self;
 }
@@ -54,9 +48,8 @@ enum CMYKComponents {
 - (void)drawRect:(CGRect)rect {
   // Drawing code.
   
-  size_t width = (size_t)(worldSize_.width * scale_ * cellSize_);
-  size_t height = (size_t)(worldSize_.height * scale_ * cellSize_);
-  size_t cellPixel = (size_t)(scale_ * cellSize_);
+  size_t width = (size_t)(worldSize_.width * cellSize_);
+  size_t height = (size_t)(worldSize_.height * cellSize_);
   size_t bitsPerComponent = 8;
   size_t bitsPerPixel = kNumberOfCMYKComponents * bitsPerComponent;
   size_t bytesPerRow = kNumberOfCMYKComponents * width;
@@ -71,11 +64,11 @@ enum CMYKComponents {
   int offset;
   
   for (y=0; y < (int)worldSize_.height; y++) {
-    for(ey=0; ey < cellPixel; ey++) {
+    for(ey=0; ey < cellSize_; ey++) {
       for (x=0; x < (int)worldSize_.width; x++) {
         cond = cells_[x + (int)worldSize_.width * y];
         
-        for(ex=0; ex < cellPixel; ex++) {
+        for(ex=0; ex < cellSize_; ex++) {
           offset = i * kNumberOfCMYKComponents;
           
           if (cond == 0) {

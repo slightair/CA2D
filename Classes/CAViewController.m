@@ -324,6 +324,7 @@ enum ruleParams {
   
   CAView *caView = (CAView *)self.view;
   caView.numConditions = numConditions_;
+  [caView setNeedsLayout];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

@@ -14,7 +14,10 @@
   CGSize worldSize_;
   CGFloat cellSize_;
   NSUInteger numConditions_;
+  unsigned char *raw_;
 }
+
+- (void)allocateRawData;
 
 @property (nonatomic) unsigned char *cells;
 @property (nonatomic) CGSize worldSize;

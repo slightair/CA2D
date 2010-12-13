@@ -43,6 +43,27 @@ enum CMYKComponents {
   }
 }
 
+- (void)setWorldSize:(CGSize)size {
+  worldSize_ = size;
+  
+  [self allocateRawData];
+}
+
+- (void)setCellSize:(CGFloat)size {
+  cellSize_ = size;
+  
+  [self allocateRawData];
+}
+
+- (void)allocateRawData {
+  size_t rawSize = (size_t)(worldSize_.width * cellSize_ * worldSize_.height * cellSize_ * kNumberOfCMYKComponents);
+  
+  if(raw_){
+    free(raw_);
+  }
+  raw_ = (unsigned char *)malloc(rawSize);
+}
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
@@ -53,10 +74,9 @@ enum CMYKComponents {
   size_t bitsPerComponent = 8;
   size_t bitsPerPixel = kNumberOfCMYKComponents * bitsPerComponent;
   size_t bytesPerRow = kNumberOfCMYKComponents * width;
-  CGColorSpaceRef colorSpaceCMYK = CGColorSpaceCreateDeviceCMYK();
-  
   size_t rawSize = width * height * kNumberOfCMYKComponents;
-  unsigned char *raw = (unsigned char *)malloc(rawSize);
+  
+  CGColorSpaceRef colorSpaceCMYK = CGColorSpaceCreateDeviceCMYK();
   
   int i = 0;
   int x, y, ex, ey;
@@ -72,16 +92,16 @@ enum CMYKComponents {
           offset = i * kNumberOfCMYKComponents;
           
           if (cond == 0) {
-            raw[offset + kCyan]    = 0;
-            raw[offset + kMagenta] = 0;
-            raw[offset + kYellow]  = 0;
-            raw[offset + kBlack]   = 0xff;
+            raw_[offset + kCyan]    = 0;
+            raw_[offset + kMagenta] = 0;
+            raw_[offset + kYellow]  = 0;
+            raw_[offset + kBlack]   = 0xff;
           }
           else {
-            raw[offset + kCyan]    = 0;
-            raw[offset + kMagenta] = (unsigned char)((1.0 - (1.0 / (numConditions_ - 2) * (cond - 1))) * 0xff);
-            raw[offset + kYellow]  = 0xff;
-            raw[offset + kBlack]   = 0;
+            raw_[offset + kCyan]    = 0;
+            raw_[offset + kMagenta] = (unsigned char)((1.0 - (1.0 / (numConditions_ - 2) * (cond - 1))) * 0xff);
+            raw_[offset + kYellow]  = 0xff;
+            raw_[offset + kBlack]   = 0;
           }
           
           i++;
@@ -90,7 +110,7 @@ enum CMYKComponents {
     }
   }
   
-  CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, raw, rawSize, NULL);
+  CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, raw_, rawSize, NULL);
   
   CGImageRef image = CGImageCreate(width,
                                    height,
@@ -109,13 +129,13 @@ enum CMYKComponents {
   CGContextScaleCTM(ctx, 1.0, -1.0);
   CGContextDrawImage(ctx, self.bounds, image);
   
-  free(raw);
   CGColorSpaceRelease(colorSpaceCMYK);
   CGDataProviderRelease(provider);
   CGImageRelease(image);
 }
 
 - (void)dealloc {
+  free(raw_);
   [super dealloc];
 }
 

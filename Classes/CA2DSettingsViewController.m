@@ -168,7 +168,7 @@ enum Settings {
   switch (indexPath.row) {
     case kSettingRule:
     if (!ruleSelectionViewController_) {
-      ruleSelectionViewController_ = [[CA2DRuleSelectionViewController alloc] initWithStyle:UITableViewStylePlain];
+//      ruleSelectionViewController_ = [[CA2DRuleSelectionViewController alloc] initWithStyle:UITableViewStylePlain];
     }
 
     [self.navigationController pushViewController:ruleSelectionViewController_ animated:YES];

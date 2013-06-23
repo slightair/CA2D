@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CA2DRuleSelectionViewController : UITableViewController {
-  NSArray *rules_;
-}
+@interface CA2DRuleSelectionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+- (IBAction)didPressedCancelButton:(id)sender;
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

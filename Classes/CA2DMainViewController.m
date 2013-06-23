@@ -9,8 +9,8 @@
 #import "CA2DMainViewController.h"
 #import	"CA2DSettings.h"
 
-#define kToolbarHeight 44
-#define kFixedSpaceWidth 64
+//#define kToolbarHeight 44
+//#define kFixedSpaceWidth 64
 
 #define kCellSize 2
 
@@ -34,48 +34,48 @@
 */
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-  CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;
-  CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
-  CGSize caViewSize = CGSizeMake(screenSize.width, screenSize.height - kToolbarHeight);
-
-  self.view = [[UIView alloc] initWithFrame:CGRectMake(0, statusBarSize.height, screenSize.width, screenSize.height)];
-
-  CA2DSettings *settings = [CA2DSettings sharedSettings];
-  caViewController_ = [[CAViewController alloc] init];
-  caViewController_.view.frame = CGRectMake(0, 0, caViewSize.width, caViewSize.height);
-  [caViewController_ makeWorldWithSize:CGSizeMake(caViewSize.width / kCellSize, caViewSize.height / kCellSize) cellSize:kCellSize rule:[settings objectForKey:kCA2DSettingRule]];
-
-  // toolbar settings.
-  toolbar_ = [[UIToolbar alloc] initWithFrame:CGRectMake(0, caViewSize.height, screenSize.width, kToolbarHeight)];
-  toolbar_.barStyle = UIBarStyleBlack;
-
-  UIBarButtonItem *clearButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clearWorld)];
-  UIBarButtonItem *randomButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(shuffleWorld)];
-  UIBarButtonItem *settingButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showSettingsView)];
-  UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-  spaceItem.width = kFixedSpaceWidth;
-
-  playButtonItem_ = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(playWorld)];
-  pauseButtonItem_ = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseWorld)];
-
-  NSArray *buttonItems = [NSArray arrayWithObjects:
-                            clearButtonItem,
-                            spaceItem,
-                            randomButtonItem,
-                            spaceItem,
-                            settingButtonItem,
-                            spaceItem,
-                            playButtonItem_,
-                            nil];
-
-  [toolbar_ setItems:buttonItems animated:NO];
-
-  self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-
-  [self.view addSubview:caViewController_.view];
-  [self.view addSubview:toolbar_];
-}
+//- (void)loadView {
+//  CGSize screenSize = [[UIScreen mainScreen] applicationFrame].size;
+//  CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
+//  CGSize caViewSize = CGSizeMake(screenSize.width, screenSize.height - kToolbarHeight);
+//
+//  self.view = [[UIView alloc] initWithFrame:CGRectMake(0, statusBarSize.height, screenSize.width, screenSize.height)];
+//
+//  CA2DSettings *settings = [CA2DSettings sharedSettings];
+//  caViewController_ = [[CAViewController alloc] init];
+//  caViewController_.view.frame = CGRectMake(0, 0, caViewSize.width, caViewSize.height);
+//  [caViewController_ makeWorldWithSize:CGSizeMake(caViewSize.width / kCellSize, caViewSize.height / kCellSize) cellSize:kCellSize rule:[settings objectForKey:kCA2DSettingRule]];
+//
+//  // toolbar settings.
+//  toolbar_ = [[UIToolbar alloc] initWithFrame:CGRectMake(0, caViewSize.height, screenSize.width, kToolbarHeight)];
+//  toolbar_.barStyle = UIBarStyleBlack;
+//
+//  UIBarButtonItem *clearButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clearWorld)];
+//  UIBarButtonItem *randomButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(shuffleWorld)];
+//  UIBarButtonItem *settingButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showSettingsView)];
+//  UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//  spaceItem.width = kFixedSpaceWidth;
+//
+//  playButtonItem_ = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(playWorld)];
+//  pauseButtonItem_ = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseWorld)];
+//
+//  NSArray *buttonItems = [NSArray arrayWithObjects:
+//                            clearButtonItem,
+//                            spaceItem,
+//                            randomButtonItem,
+//                            spaceItem,
+//                            settingButtonItem,
+//                            spaceItem,
+//                            playButtonItem_,
+//                            nil];
+//
+//  [toolbar_ setItems:buttonItems animated:NO];
+//
+//  self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//
+//  [self.view addSubview:caViewController_.view];
+////  [self.view addSubview:toolbar_];
+//}
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

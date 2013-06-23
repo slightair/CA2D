@@ -9,19 +9,96 @@
             <objects>
                 <viewController id="3qj-2B-brh" customClass="CA2DMainViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f0f-WQ-JAr">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="PG5-hi-Kht">
+                                <items>
+                                    <barButtonItem title="shuffle" id="UQo-Ho-wJ3"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="vSX-XQ-Iwv"/>
+                                    <barButtonItem systemItem="play" id="JD8-jZ-cHQ"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="F4a-nm-4fM"/>
+                                    <barButtonItem title="Rules" id="cX7-N1-XuE">
+                                        <connections>
+                                            <segue destination="uUV-28-1vq" kind="modal" modalTransitionStyle="flipHorizontal" id="raI-4a-tpw"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PG5-hi-Kht" firstAttribute="leading" secondItem="f0f-WQ-JAr" secondAttribute="leading" type="default" id="Uhg-zo-lJ7"/>
+                            <constraint firstItem="PG5-hi-Kht" firstAttribute="bottom" secondItem="f0f-WQ-JAr" secondAttribute="bottom" type="default" id="tpZ-Da-Gl0"/>
+                            <constraint firstItem="PG5-hi-Kht" firstAttribute="trailing" secondItem="f0f-WQ-JAr" secondAttribute="trailing" type="default" id="xXc-dY-wrc"/>
+                        </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uap-dF-41U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="263" y="-60"/>
+            <point key="canvasLocation" x="45" y="-59"/>
+        </scene>
+        <!--Rule Selection View Controller-->
+        <scene sceneID="0ek-iZ-gMQ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HCh-mS-PEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="uUV-28-1vq" customClass="CA2DRuleSelectionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wWS-To-NDP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Urb-GU-ROj">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="uUV-28-1vq" id="T6G-NM-r2u"/>
+                                    <outlet property="delegate" destination="uUV-28-1vq" id="rfs-VH-SxD"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="aZs-4K-s5j">
+                                <items>
+                                    <navigationItem title="Rules" id="XVf-jV-fWq">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="EID-b9-8ZL">
+                                            <connections>
+                                                <action selector="didPressedCancelButton:" destination="uUV-28-1vq" id="mLc-kS-2zS"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aZs-4K-s5j" firstAttribute="trailing" secondItem="wWS-To-NDP" secondAttribute="trailing" type="default" id="EYO-Mf-YBG"/>
+                            <constraint firstItem="Urb-GU-ROj" firstAttribute="top" secondItem="aZs-4K-s5j" secondAttribute="bottom" type="default" id="HdT-SV-8MY"/>
+                            <constraint firstItem="Urb-GU-ROj" firstAttribute="leading" secondItem="wWS-To-NDP" secondAttribute="leading" type="default" id="PCa-jr-EfZ"/>
+                            <constraint firstItem="aZs-4K-s5j" firstAttribute="leading" secondItem="wWS-To-NDP" secondAttribute="leading" type="default" id="VWk-6z-fnb"/>
+                            <constraint firstItem="aZs-4K-s5j" firstAttribute="top" secondItem="wWS-To-NDP" secondAttribute="top" type="default" id="pdE-oW-aXp"/>
+                            <constraint firstItem="Urb-GU-ROj" firstAttribute="trailing" secondItem="wWS-To-NDP" secondAttribute="trailing" type="default" id="xIS-ae-0Jf"/>
+                            <constraint firstItem="Urb-GU-ROj" firstAttribute="bottom" secondItem="wWS-To-NDP" secondAttribute="bottom" type="default" id="zb5-p8-ogJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Urb-GU-ROj" id="7Vx-oE-aXD"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="796" y="-59"/>
         </scene>
     </scenes>
     <classes>
         <class className="CA2DMainViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CA2DMainViewController.h"/>
+        </class>
+        <class className="CA2DRuleSelectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CA2DRuleSelectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didPressedCancelButton:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

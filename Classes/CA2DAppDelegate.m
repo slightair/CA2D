@@ -16,16 +16,8 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-
   // Override point for customization after application launch.
   srandom(time(NULL));
-
-  mainViewController_ = [[CA2DMainViewController alloc] init];
-
-  self.window.backgroundColor = [UIColor viewFlipsideBackgroundColor];
-
-  [self.window addSubview:mainViewController_.view];
-  [self.window makeKeyAndVisible];
 
   return YES;
 }

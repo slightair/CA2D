@@ -12,7 +12,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		5735F8431298F931005A82BE /* CA2DMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5735F83E1298F931005A82BE /* CA2DMainViewController.m */; };
 		5735F8441298F931005A82BE /* CAView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5735F8401298F931005A82BE /* CAView.m */; };
 		5735F8451298F931005A82BE /* CAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5735F8421298F931005A82BE /* CAViewController.m */; };
@@ -22,6 +21,7 @@
 		5735FA4A129BB836005A82BE /* CA2DSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 5735FA49129BB836005A82BE /* CA2DSettings.m */; };
 		5735FC2A129C076C005A82BE /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5735FC28129C076C005A82BE /* appIcon@2x.png */; };
 		5735FC2B129C076C005A82BE /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5735FC29129C076C005A82BE /* appIcon.png */; };
+		57C249F41776C6EA00F13C5A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C249F31776C6EA00F13C5A /* MainStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,6 @@
 		1D6058910D05DD3D006BFB54 /* CA2D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CA2D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* CA2D_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CA2D_Prefix.pch; sourceTree = "<group>"; };
 		5735F83D1298F931005A82BE /* CA2DMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CA2DMainViewController.h; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		5735FA49129BB836005A82BE /* CA2DSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CA2DSettings.m; sourceTree = "<group>"; };
 		5735FC28129C076C005A82BE /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
 		5735FC29129C076C005A82BE /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
+		57C249F31776C6EA00F13C5A /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* CA2D-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CA2D-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,9 +121,9 @@
 			children = (
 				5735FC28129C076C005A82BE /* appIcon@2x.png */,
 				5735FC29129C076C005A82BE /* appIcon.png */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* CA2D-Info.plist */,
 				5735F98512994ED5005A82BE /* rules.plist */,
+				57C249F31776C6EA00F13C5A /* MainStoryboard.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -191,10 +191,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				5735F98612994ED5005A82BE /* rules.plist in Resources */,
 				5735FC2A129C076C005A82BE /* appIcon@2x.png in Resources */,
 				5735FC2B129C076C005A82BE /* appIcon.png in Resources */,
+				57C249F41776C6EA00F13C5A /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,11 +232,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CA2D_Prefix.pch;
 				INFOPLIST_FILE = "CA2D-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = CA2D;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -250,10 +251,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CA2D_Prefix.pch;
 				INFOPLIST_FILE = "CA2D-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = CA2D;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -283,10 +285,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CA2D_Prefix.pch;
 				INFOPLIST_FILE = "CA2D-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = CA2D;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "219876CE-422D-4805-B41B-36591D8A14BC";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;

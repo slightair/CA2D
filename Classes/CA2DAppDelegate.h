@@ -11,7 +11,6 @@
 
 @interface CA2DAppDelegate : NSObject <UIApplicationDelegate> {
   UIWindow *window;
-  CA2DMainViewController *mainViewController_;
 }
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;

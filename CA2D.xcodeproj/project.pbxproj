@@ -17,11 +17,12 @@
 		5735F8451298F931005A82BE /* CAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5735F8421298F931005A82BE /* CAViewController.m */; };
 		5735F97612994D17005A82BE /* CA2DRuleSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5735F97512994D17005A82BE /* CA2DRuleSelectionViewController.m */; };
 		5735F98612994ED5005A82BE /* rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5735F98512994ED5005A82BE /* rules.plist */; };
-		5735F98B12994FCD005A82BE /* CA2DSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5735F98A12994FCD005A82BE /* CA2DSettingsViewController.m */; };
 		5735FA4A129BB836005A82BE /* CA2DSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 5735FA49129BB836005A82BE /* CA2DSettings.m */; };
 		5735FC2A129C076C005A82BE /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5735FC28129C076C005A82BE /* appIcon@2x.png */; };
 		5735FC2B129C076C005A82BE /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5735FC29129C076C005A82BE /* appIcon.png */; };
 		57C249F41776C6EA00F13C5A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57C249F31776C6EA00F13C5A /* MainStoryboard.storyboard */; };
+		57DF06221777142A0014FA92 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57DF06211777142A0014FA92 /* Default-568h@2x.png */; };
+		57E9FE3C1777246D00004D9C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57E9FE3B1777246D00004D9C /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,13 +43,13 @@
 		5735F97412994D17005A82BE /* CA2DRuleSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CA2DRuleSelectionViewController.h; sourceTree = "<group>"; };
 		5735F97512994D17005A82BE /* CA2DRuleSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CA2DRuleSelectionViewController.m; sourceTree = "<group>"; };
 		5735F98512994ED5005A82BE /* rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rules.plist; sourceTree = "<group>"; };
-		5735F98912994FCD005A82BE /* CA2DSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CA2DSettingsViewController.h; sourceTree = "<group>"; };
-		5735F98A12994FCD005A82BE /* CA2DSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CA2DSettingsViewController.m; sourceTree = "<group>"; };
 		5735FA48129BB836005A82BE /* CA2DSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CA2DSettings.h; sourceTree = "<group>"; };
 		5735FA49129BB836005A82BE /* CA2DSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CA2DSettings.m; sourceTree = "<group>"; };
 		5735FC28129C076C005A82BE /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
 		5735FC29129C076C005A82BE /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
 		57C249F31776C6EA00F13C5A /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		57DF06211777142A0014FA92 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		57E9FE3B1777246D00004D9C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* CA2D-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CA2D-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57E9FE3C1777246D00004D9C /* QuartzCore.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -73,8 +75,6 @@
 				1D3623250D0F684500981E51 /* CA2DAppDelegate.m */,
 				5735F83D1298F931005A82BE /* CA2DMainViewController.h */,
 				5735F83E1298F931005A82BE /* CA2DMainViewController.m */,
-				5735F98912994FCD005A82BE /* CA2DSettingsViewController.h */,
-				5735F98A12994FCD005A82BE /* CA2DSettingsViewController.m */,
 				5735F97412994D17005A82BE /* CA2DRuleSelectionViewController.h */,
 				5735F97512994D17005A82BE /* CA2DRuleSelectionViewController.m */,
 				5735F83F1298F931005A82BE /* CAView.h */,
@@ -98,6 +98,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				57E9FE3B1777246D00004D9C /* QuartzCore.framework */,
+				57DF06211777142A0014FA92 /* Default-568h@2x.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -195,6 +197,7 @@
 				5735FC2A129C076C005A82BE /* appIcon@2x.png in Resources */,
 				5735FC2B129C076C005A82BE /* appIcon.png in Resources */,
 				57C249F41776C6EA00F13C5A /* MainStoryboard.storyboard in Resources */,
+				57DF06221777142A0014FA92 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +214,6 @@
 				5735F8441298F931005A82BE /* CAView.m in Sources */,
 				5735F8451298F931005A82BE /* CAViewController.m in Sources */,
 				5735F97612994D17005A82BE /* CA2DRuleSelectionViewController.m in Sources */,
-				5735F98B12994FCD005A82BE /* CA2DSettingsViewController.m in Sources */,
 				5735FA4A129BB836005A82BE /* CA2DSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

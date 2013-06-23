@@ -7,6 +7,7 @@
 //
 
 #import "CA2DRuleSelectionViewController.h"
+#import "CA2DMainViewController.h"
 #import "CA2DSettings.h"
 
 #define kNumberOfSection 1
@@ -94,6 +95,10 @@
 
         [settings setObject:[ruleDict objectForKey:@"rule"] forKey:kCA2DSettingRule];
         [settings setObject:[NSNumber numberWithInteger:indexPath.row] forKey:kCA2DSettingRuleIndex];
+
+        CA2DMainViewController *mainViewController = self.presentingViewController;
+        mainViewController.rule = [[CA2DSettings sharedSettings] objectForKey:kCA2DSettingRule];
+        [mainViewController shuffleWorld];
     }
 
     [self dismissModalViewControllerAnimated:YES];

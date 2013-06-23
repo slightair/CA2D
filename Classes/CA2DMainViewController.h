@@ -8,25 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "CAViewController.h"
-#import "CA2DSettingsViewController.h"
 
+@interface CA2DMainViewController : UIViewController
 
-@interface CA2DMainViewController : UIViewController {
-  UIToolbar *toolbar_;
-  UIBarButtonItem *playButtonItem_;
-  UIBarButtonItem *pauseButtonItem_;
-  
-  CAViewController *caViewController_;
-  CA2DSettingsViewController *settingsViewController_;
-  UINavigationController *navigationController_;
-}
-
-- (void)clearWorld;
 - (void)shuffleWorld;
 - (void)playWorld;
 - (void)pauseWorld;
-- (void)showSettingsView;
 - (void)setRule:(NSString *)rule;
 - (NSString *)rule;
+
+@property (nonatomic, weak) IBOutlet UIToolbar *toolBar;
+@property (nonatomic, weak) IBOutlet UIView *contentView;
+
+- (IBAction)didTappedView:(id)sender;
+- (IBAction)didTappedShuffleButton:(id)sender;
+- (IBAction)didTappedToggleButton:(id)sender;
 
 @end

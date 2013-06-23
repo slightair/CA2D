@@ -81,7 +81,11 @@ enum ruleParams {
 }
 
 - (void)playWorld {
-  timer_ = [NSTimer scheduledTimerWithTimeInterval:kUpdateInterval target:self selector:@selector(tickWorld:) userInfo:nil repeats:YES];
+    if ([timer_ isValid]) {
+        return;
+    }
+
+    timer_ = [NSTimer scheduledTimerWithTimeInterval:kUpdateInterval target:self selector:@selector(tickWorld:) userInfo:nil repeats:YES];
 }
 
 - (void)pauseWorld {
@@ -317,37 +321,42 @@ enum ruleParams {
   [caView setNeedsLayout];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  if (timer_) {
-    isNeedRestart_ = YES;
-  }
-  [self pauseWorld];
-  
-  UITouch *touch = [touches anyObject];
-  unsigned char *cells = (unsigned char *)[cells_ bytes];
-  CGPoint point = [touch locationInView:self.view];
-  NSInteger index = (int)(point.x / cellSize_) + (int)(point.y / cellSize_) * (int)worldSize_.width;
-  cells[index] = (unsigned char)(numConditions_ - 1);
-  
-  [self.view setNeedsDisplay];
+- (NSTimer *)timer
+{
+    return timer_;
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-  UITouch *touch = [touches anyObject];
-  unsigned char *cells = (unsigned char *)[cells_ bytes];
-  CGPoint point = [touch locationInView:self.view];
-  NSInteger index = (int)(point.x / cellSize_) + (int)(point.y / cellSize_) * (int)worldSize_.width;
-  cells[index] = (unsigned char)(numConditions_ - 1);
-  
-  [self.view setNeedsDisplay];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  if (isNeedRestart_) {
-    [self playWorld];
-    
-    isNeedRestart_ = NO;
-  }
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//  if (timer_) {
+//    isNeedRestart_ = YES;
+//  }
+//  [self pauseWorld];
+//  
+//  UITouch *touch = [touches anyObject];
+//  unsigned char *cells = (unsigned char *)[cells_ bytes];
+//  CGPoint point = [touch locationInView:self.view];
+//  NSInteger index = (int)(point.x / cellSize_) + (int)(point.y / cellSize_) * (int)worldSize_.width;
+//  cells[index] = (unsigned char)(numConditions_ - 1);
+//  
+//  [self.view setNeedsDisplay];
+//}
+//
+//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+//  UITouch *touch = [touches anyObject];
+//  unsigned char *cells = (unsigned char *)[cells_ bytes];
+//  CGPoint point = [touch locationInView:self.view];
+//  NSInteger index = (int)(point.x / cellSize_) + (int)(point.y / cellSize_) * (int)worldSize_.width;
+//  cells[index] = (unsigned char)(numConditions_ - 1);
+//  
+//  [self.view setNeedsDisplay];
+//}
+//
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+//  if (isNeedRestart_) {
+//    [self playWorld];
+//    
+//    isNeedRestart_ = NO;
+//  }
+//}
 
 @end

@@ -100,7 +100,7 @@ enum Settings {
 
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
   }
 
   // Configure the cell...
@@ -196,10 +196,6 @@ enum Settings {
 }
 
 
-- (void)dealloc {
-  [ruleSelectionViewController_ release];
-  [super dealloc];
-}
 
 
 - (void)close {

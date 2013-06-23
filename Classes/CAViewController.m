@@ -33,7 +33,7 @@ enum ruleParams {
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
-  self.view = [[[CAView alloc] initWithFrame:CGRectZero] autorelease];
+  self.view = [[CAView alloc] initWithFrame:CGRectZero];
 }
 
 /*
@@ -65,12 +65,6 @@ enum ruleParams {
 }
 
 
-- (void)dealloc {
-  [cells_ release];
-  [rule_ release];
-  
-  [super dealloc];
-}
 
 - (void)makeWorldWithSize:(CGSize)worldSize cellSize:(CGFloat)cellSize rule:(NSString *)rule {
   worldSize_ = worldSize;
@@ -103,7 +97,6 @@ enum ruleParams {
     raw[i] = 0;
   }
   
-  [cells_ autorelease];
   cells_ = [[NSData alloc] initWithBytesNoCopy:raw length:worldLength_];
   
   CAView *caView = (CAView *)self.view;
@@ -131,7 +124,6 @@ enum ruleParams {
     }
   }
   
-  [cells_ autorelease];
   cells_ = [[NSData alloc] initWithBytesNoCopy:raw length:worldLength_];
   
   CAView *caView = (CAView *)self.view;
@@ -287,7 +279,6 @@ enum ruleParams {
     }
   }
   
-  [cells_ autorelease];
   cells_ = [[NSData alloc] initWithBytesNoCopy:cells length:worldLength_];
   
   CAView *caView = (CAView *)self.view;
@@ -301,8 +292,7 @@ enum ruleParams {
   char tmp[2];
   int i;
   
-  [rule_ autorelease];
-  rule_ = [rule retain];
+  rule_ = rule;
   
   params = [rule componentsSeparatedByString:@"/"];
   

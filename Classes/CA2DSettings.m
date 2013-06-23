@@ -20,49 +20,14 @@
 
 @implementation CA2DSettings
 
-// Implementing Singleton
-
-static id _instance = nil;
-
-+ (id)sharedSettings {
-  @synchronized(self){
-    if (!_instance) {
-      [[self alloc] init];
-    }
-  }
-
-  return _instance;
-}
-
-+ (id)allocWithZone:(NSZone *)zone {
-  @synchronized(self){
-    if (!_instance) {
-      _instance = [super allocWithZone:zone];
-      return _instance;
-    }
-  }
-
-  return nil;
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-  return self;
-}
-
-- (id)retain {
-  return self;
-}
-
-- (unsigned)retainCount {
-  return UINT_MAX;
-}
-
-- (void)release {
-  // nothing is done.
-}
-
-- (id)autorelease {
-  return self;
++ (id)sharedSettings
+{
+    static dispatch_once_t pred = 0;
+    __strong static id _sharedInstance;
+    dispatch_once(&pred, ^{
+        _sharedInstance = [[self alloc] init];
+    });
+    return _sharedInstance;
 }
 
 - (id)init {
@@ -71,7 +36,7 @@ static id _instance = nil;
   if (self) {
     settings_ = [[NSMutableDictionary alloc] init];
 
-    NSArray *rules = [[[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"rules" ofType:@"plist"]] autorelease];
+    NSArray *rules = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"rules" ofType:@"plist"]];
     NSInteger defaultRuleIndex = kDefaultRuleIndex;
     NSDictionary *rule = [rules objectAtIndex:defaultRuleIndex];
 
@@ -96,10 +61,6 @@ static id _instance = nil;
   return [settings_ objectForKey:key];
 }
 
-- (void)dealloc {
-  [settings_ release];
-  [super dealloc];
-}
 
 #pragma mark -
 #pragma mark PrivateMethods

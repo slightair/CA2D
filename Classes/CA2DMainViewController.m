@@ -50,10 +50,10 @@
   toolbar_ = [[UIToolbar alloc] initWithFrame:CGRectMake(0, caViewSize.height, screenSize.width, kToolbarHeight)];
   toolbar_.barStyle = UIBarStyleBlack;
 
-  UIBarButtonItem *clearButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clearWorld)] autorelease];
-  UIBarButtonItem *randomButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(shuffleWorld)] autorelease];
-  UIBarButtonItem *settingButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showSettingsView)] autorelease];
-  UIBarButtonItem *spaceItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
+  UIBarButtonItem *clearButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clearWorld)];
+  UIBarButtonItem *randomButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(shuffleWorld)];
+  UIBarButtonItem *settingButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showSettingsView)];
+  UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
   spaceItem.width = kFixedSpaceWidth;
 
   playButtonItem_ = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(playWorld)];
@@ -106,16 +106,6 @@
 }
 
 
-- (void)dealloc {
-  [toolbar_ release];
-  [playButtonItem_ release];
-  [pauseButtonItem_ release];
-  [caViewController_ release];
-  [settingsViewController_ release];
-  [navigationController_ release];
-  
-  [super dealloc];
-}
 
 - (void)clearWorld {
   [self pauseWorld];

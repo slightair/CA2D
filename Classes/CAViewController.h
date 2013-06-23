@@ -29,7 +29,7 @@
 - (void)shuffleWorld;
 - (void)tickWorld:(NSTimer *)timer;
 
-@property(nonatomic, retain) NSString *rule;
+@property(nonatomic, strong) NSString *rule;
 
 @end
 

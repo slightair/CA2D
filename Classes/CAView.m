@@ -136,7 +136,6 @@ enum CMYKComponents {
 
 - (void)dealloc {
   free(raw_);
-  [super dealloc];
 }
 
 

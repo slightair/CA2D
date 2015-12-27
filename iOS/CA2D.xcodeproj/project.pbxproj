@@ -14,18 +14,28 @@
 		5778A58F1C2F9D430019FF99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5778A58D1C2F9D430019FF99 /* Main.storyboard */; };
 		5778A5911C2F9D430019FF99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5778A5901C2F9D430019FF99 /* Assets.xcassets */; };
 		5778A5941C2F9D430019FF99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5778A5921C2F9D430019FF99 /* LaunchScreen.storyboard */; };
+		5778A59C1C2FA0C60019FF99 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A59B1C2FA0C60019FF99 /* Renderer.swift */; };
+		5778A59E1C2FA0E60019FF99 /* ShaderProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A59D1C2FA0E60019FF99 /* ShaderProgram.swift */; };
+		5778A5A31C2FA75C0019FF99 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A5A21C2FA75C0019FF99 /* World.swift */; };
+		5778A5A51C2FB1E20019FF99 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A5A41C2FB1E20019FF99 /* Vertex.swift */; };
+		5778A5A81C2FB59A0019FF99 /* WorldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A5A71C2FB59A0019FF99 /* WorldModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5778A5821C2F9D430019FF99 /* CA2D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CA2D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5778A5851C2F9D430019FF99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5778A5871C2F9D430019FF99 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
-		5778A5891C2F9D430019FF99 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		5778A5871C2F9D430019FF99 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		5778A5891C2F9D430019FF99 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		5778A58B1C2F9D430019FF99 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		5778A58E1C2F9D430019FF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5778A5901C2F9D430019FF99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5778A5931C2F9D430019FF99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5778A5951C2F9D430019FF99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5778A59B1C2FA0C60019FF99 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		5778A59D1C2FA0E60019FF99 /* ShaderProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShaderProgram.swift; sourceTree = "<group>"; };
+		5778A5A21C2FA75C0019FF99 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		5778A5A41C2FB1E20019FF99 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		5778A5A71C2FB59A0019FF99 /* WorldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +68,37 @@
 		5778A5841C2F9D430019FF99 /* CA2D */ = {
 			isa = PBXGroup;
 			children = (
+				5778A5A61C2FB1F00019FF99 /* Graphics */,
 				5778A5851C2F9D430019FF99 /* AppDelegate.swift */,
-				5778A5871C2F9D430019FF99 /* Shader.fsh */,
-				5778A5891C2F9D430019FF99 /* Shader.vsh */,
 				5778A58B1C2F9D430019FF99 /* GameViewController.swift */,
+				5778A5A21C2FA75C0019FF99 /* World.swift */,
 				5778A58D1C2F9D430019FF99 /* Main.storyboard */,
 				5778A5901C2F9D430019FF99 /* Assets.xcassets */,
 				5778A5921C2F9D430019FF99 /* LaunchScreen.storyboard */,
 				5778A5951C2F9D430019FF99 /* Info.plist */,
 			);
 			path = CA2D;
+			sourceTree = "<group>";
+		};
+		5778A59F1C2FA12B0019FF99 /* Shader */ = {
+			isa = PBXGroup;
+			children = (
+				5778A5871C2F9D430019FF99 /* Shader.fsh */,
+				5778A5891C2F9D430019FF99 /* Shader.vsh */,
+				5778A59D1C2FA0E60019FF99 /* ShaderProgram.swift */,
+			);
+			path = Shader;
+			sourceTree = "<group>";
+		};
+		5778A5A61C2FB1F00019FF99 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				5778A59F1C2FA12B0019FF99 /* Shader */,
+				5778A59B1C2FA0C60019FF99 /* Renderer.swift */,
+				5778A5A41C2FB1E20019FF99 /* Vertex.swift */,
+				5778A5A71C2FB59A0019FF99 /* WorldModel.swift */,
+			);
+			path = Graphics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,8 +174,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5778A5A31C2FA75C0019FF99 /* World.swift in Sources */,
 				5778A58C1C2F9D430019FF99 /* GameViewController.swift in Sources */,
+				5778A5A81C2FB59A0019FF99 /* WorldModel.swift in Sources */,
+				5778A59E1C2FA0E60019FF99 /* ShaderProgram.swift in Sources */,
+				5778A59C1C2FA0C60019FF99 /* Renderer.swift in Sources */,
 				5778A5861C2F9D430019FF99 /* AppDelegate.swift in Sources */,
+				5778A5A51C2FB1E20019FF99 /* Vertex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +294,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CA2D/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.clv.CA2D;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -269,6 +306,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CA2D/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.clv.CA2D;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -294,6 +332,7 @@
 				5778A59A1C2F9D430019FF99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

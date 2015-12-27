@@ -9,5 +9,5 @@ void main()
 {
     vColor = color;
 
-    gl_Position = position;
+    gl_Position = position * vec4(1, -1, 1, 1);
 }

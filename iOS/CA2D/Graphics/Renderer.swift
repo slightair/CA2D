@@ -46,20 +46,21 @@ class Renderer: NSObject, GLKViewDelegate {
             return p.advancedBy(i)
         }
 
-        let vertices = worldModel.vertices.map { $0.v }
+        let modelVertices = worldModel.vertices
+        let vertices = modelVertices.flatMap { $0.v }
 
         glBindVertexArray(modelVertexArray)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), modelVertexBuffer)
 
-        glBufferData(GLenum(GL_ARRAY_BUFFER), GLsizeiptr(Vertex.size * worldModel.triangleCount), vertices, GLenum(GL_STREAM_DRAW))
+        glBufferData(GLenum(GL_ARRAY_BUFFER), GLsizeiptr(Vertex.size * modelVertices.count), vertices, GLenum(GL_STREAM_DRAW))
 
         glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Position.rawValue))
-        glVertexAttribPointer(GLuint(GLKVertexAttrib.Position.rawValue), 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(Vertex.size), offset(0))
+        glVertexAttribPointer(GLuint(GLKVertexAttrib.Position.rawValue), 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(Vertex.size), offset(0))
 
         glEnableVertexAttribArray(GLuint(GLKVertexAttrib.Color.rawValue))
-        glVertexAttribPointer(GLuint(GLKVertexAttrib.Color.rawValue), 4, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(Vertex.size), offset(sizeof(Float) * 3))
+        glVertexAttribPointer(GLuint(GLKVertexAttrib.Color.rawValue), 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(Vertex.size), offset(sizeof(Float) * 2))
 
-        glDrawArrays(GLenum(GL_TRIANGLES), 0, GLsizei(worldModel.triangleCount))
+        glDrawArrays(GLenum(GL_TRIANGLES), 0, GLsizei(modelVertices.count))
 
         glBindVertexArray(0)
     }
@@ -70,8 +71,7 @@ class Renderer: NSObject, GLKViewDelegate {
         glClearColor(0.0, 0.0, 0.0, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
 
-        glEnable(GLenum(GL_BLEND))
-        glBlendFunc(GLenum(GL_SRC_ALPHA), GLenum(GL_ONE))
+        glUseProgram(shaderProgram.programID)
 
         renderWorld()
     }

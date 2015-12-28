@@ -1,6 +1,6 @@
 import Foundation
 
-class World {
+final class World {
     let width, height: Int
     let rule: Rule
     var cells: [Int]

@@ -1,7 +1,7 @@
 import OpenGLES
 import GLKit
 
-class WorldModel {
+final class WorldModel {
     let world: World
 
     var vertices: [Vertex] {

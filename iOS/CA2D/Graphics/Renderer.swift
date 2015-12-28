@@ -1,7 +1,7 @@
 import GLKit
 import OpenGLES
 
-class Renderer: NSObject, GLKViewDelegate {
+final class Renderer: NSObject, GLKViewDelegate {
     let context: EAGLContext
     let worldModel: WorldModel
 

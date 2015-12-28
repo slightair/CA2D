@@ -1,6 +1,6 @@
 import GLKit
 
-class GameViewController: GLKViewController {
+final class GameViewController: GLKViewController {
     var renderer: Renderer!
     var world: World!
     var timer: NSTimer?

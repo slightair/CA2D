@@ -24,6 +24,7 @@ class GameViewController: GLKViewController {
         glkView.drawableColorFormat = .SRGBA8888
         glkView.drawableDepthFormat = .Format24
 
+        world.shuffle()
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "tickWorld", userInfo: nil, repeats: true)
     }
 
@@ -33,6 +34,6 @@ class GameViewController: GLKViewController {
     }
 
     func tickWorld() {
-        world.shuffle()
+        world.tick()
     }
 }

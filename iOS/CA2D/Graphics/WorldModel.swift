@@ -12,12 +12,12 @@ class WorldModel {
 
         for y in (0..<world.height) {
             for x in (0..<world.width) {
-                let cell = world.cells[y * world.width + x]
-                if cell == 0 {
+                let condition = world.cells[y * world.width + x]
+                if condition == 0 {
                     continue
                 }
 
-                let color = GLKVector3Make(1.0, 1.0, 0.0)
+                let color = colorFromCondition(condition)
 
                 let posA = GLKVector2Make(-1.0 + cellWidth * Float(x),     -1.0 + cellHeight * Float(y))
                 let posB = GLKVector2Make(-1.0 + cellWidth * Float(x),     -1.0 + cellHeight * Float(y + 1))
@@ -41,5 +41,18 @@ class WorldModel {
 
     init(world: World) {
         self.world = world
+    }
+
+    func colorFromCondition(condition: Int) -> GLKVector3 {
+        let cyan:Float = 0.0
+        let magenta:Float = 1.0 - (1.0 / Float(world.rule.conditions - 2) * Float(condition - 1))
+        let yellow:Float = 1.0
+        let key:Float = 0.0
+
+        let red   = 1 - min(1.0, cyan    * (1.0 - key)) + key
+        let green = 1 - min(1.0, magenta * (1.0 - key)) + key
+        let blue  = 1 - min(1.0, yellow  * (1.0 - key)) + key
+
+        return GLKVector3Make(red, green, blue)
     }
 }

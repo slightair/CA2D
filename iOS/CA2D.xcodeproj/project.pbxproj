@@ -20,7 +20,34 @@
 		5778A5A51C2FB1E20019FF99 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A5A41C2FB1E20019FF99 /* Vertex.swift */; };
 		5778A5A81C2FB59A0019FF99 /* WorldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A5A71C2FB59A0019FF99 /* WorldModel.swift */; };
 		5778A5AA1C3110370019FF99 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A5A91C3110370019FF99 /* Rule.swift */; };
+		5778A5B01C316F700019FF99 /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5778A5AF1C316F700019FF99 /* Chameleon.framework */; };
+		5778A5B21C316F800019FF99 /* Chameleon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5778A5AF1C316F700019FF99 /* Chameleon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5778A5BC1C3170220019FF99 /* Chameleon.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5778A5BB1C3170220019FF99 /* Chameleon.framework.dSYM */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5778A5B31C316F800019FF99 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5778A5B21C316F800019FF99 /* Chameleon.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5778A5B71C316FE20019FF99 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				5778A5BC1C3170220019FF99 /* Chameleon.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5778A5821C2F9D430019FF99 /* CA2D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CA2D.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +65,8 @@
 		5778A5A41C2FB1E20019FF99 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		5778A5A71C2FB59A0019FF99 /* WorldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldModel.swift; sourceTree = "<group>"; };
 		5778A5A91C3110370019FF99 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		5778A5AF1C316F700019FF99 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
+		5778A5BB1C3170220019FF99 /* Chameleon.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Chameleon.framework.dSYM; path = Carthage/Build/iOS/Chameleon.framework.dSYM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5778A5B01C316F700019FF99 /* Chameleon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +84,7 @@
 		5778A5791C2F9D430019FF99 = {
 			isa = PBXGroup;
 			children = (
+				5778A5B41C316F9B0019FF99 /* Frameworks */,
 				5778A5841C2F9D430019FF99 /* CA2D */,
 				5778A5831C2F9D430019FF99 /* Products */,
 			);
@@ -104,6 +135,23 @@
 			path = Graphics;
 			sourceTree = "<group>";
 		};
+		5778A5B41C316F9B0019FF99 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5778A5B51C316FA50019FF99 /* dSYM */,
+				5778A5AF1C316F700019FF99 /* Chameleon.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5778A5B51C316FA50019FF99 /* dSYM */ = {
+			isa = PBXGroup;
+			children = (
+				5778A5BB1C3170220019FF99 /* Chameleon.framework.dSYM */,
+			);
+			name = dSYM;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -114,6 +162,8 @@
 				5778A57E1C2F9D430019FF99 /* Sources */,
 				5778A57F1C2F9D430019FF99 /* Frameworks */,
 				5778A5801C2F9D430019FF99 /* Resources */,
+				5778A5B31C316F800019FF99 /* Embed Frameworks */,
+				5778A5B71C316FE20019FF99 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -297,6 +347,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = CA2D/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -310,6 +364,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = CA2D/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

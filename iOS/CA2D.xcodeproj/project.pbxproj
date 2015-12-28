@@ -19,6 +19,7 @@
 		5778A5A31C2FA75C0019FF99 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A5A21C2FA75C0019FF99 /* World.swift */; };
 		5778A5A51C2FB1E20019FF99 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A5A41C2FB1E20019FF99 /* Vertex.swift */; };
 		5778A5A81C2FB59A0019FF99 /* WorldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A5A71C2FB59A0019FF99 /* WorldModel.swift */; };
+		5778A5AA1C3110370019FF99 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A5A91C3110370019FF99 /* Rule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		5778A5A21C2FA75C0019FF99 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		5778A5A41C2FB1E20019FF99 /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		5778A5A71C2FB59A0019FF99 /* WorldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldModel.swift; sourceTree = "<group>"; };
+		5778A5A91C3110370019FF99 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				5778A5851C2F9D430019FF99 /* AppDelegate.swift */,
 				5778A58B1C2F9D430019FF99 /* GameViewController.swift */,
 				5778A5A21C2FA75C0019FF99 /* World.swift */,
+				5778A5A91C3110370019FF99 /* Rule.swift */,
 				5778A58D1C2F9D430019FF99 /* Main.storyboard */,
 				5778A5901C2F9D430019FF99 /* Assets.xcassets */,
 				5778A5921C2F9D430019FF99 /* LaunchScreen.storyboard */,
@@ -179,6 +182,7 @@
 				5778A5A81C2FB59A0019FF99 /* WorldModel.swift in Sources */,
 				5778A59E1C2FA0E60019FF99 /* ShaderProgram.swift in Sources */,
 				5778A59C1C2FA0C60019FF99 /* Renderer.swift in Sources */,
+				5778A5AA1C3110370019FF99 /* Rule.swift in Sources */,
 				5778A5861C2F9D430019FF99 /* AppDelegate.swift in Sources */,
 				5778A5A51C2FB1E20019FF99 /* Vertex.swift in Sources */,
 			);

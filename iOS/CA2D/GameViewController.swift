@@ -14,7 +14,7 @@ class GameViewController: GLKViewController {
         let split = 4 * UIScreen.mainScreen().scale
         let worldWidth = Int(CGRectGetHeight(nativeBounds) / split)
         let worldHeight = Int(CGRectGetWidth(nativeBounds) / split)
-        world = World(width: worldWidth, height: worldHeight)
+        world = World(width: worldWidth, height: worldHeight, rule: Rule.presets.first!)
 
         renderer = Renderer(context: context, world: world)
 

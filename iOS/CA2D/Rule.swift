@@ -45,6 +45,7 @@ struct Rule {
         Rule(name: "Glisserati", rule: "035678/245678/7"),
         Rule(name: "Glissergy", rule: "035678/245678/5"),
         Rule(name: "Lava", rule: "12345/45678/8"),
+        Rule(name: "Life", rule: "23/3/2"),
         Rule(name: "Lines", rule: "012345/458/3"),
         Rule(name: "LivingOn TheEdge", rule: "345/3/6"),
         Rule(name: "Meteor Guns", rule: "01245678/3/8"),

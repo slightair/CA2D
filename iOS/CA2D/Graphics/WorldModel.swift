@@ -44,6 +44,10 @@ final class WorldModel {
     }
 
     func colorFromCondition(condition: Int) -> GLKVector3 {
+        guard world.rule.conditions > 2 else {
+            return GLKVector3Make(1.0, 1.0, 0.0)
+        }
+
         let cyan:Float = 0.0
         let magenta:Float = 1.0 - (1.0 / Float(world.rule.conditions - 2) * Float(condition - 1))
         let yellow:Float = 1.0

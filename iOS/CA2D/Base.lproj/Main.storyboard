@@ -22,7 +22,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="XnR-kd-QBQ"/>
                         <barButtonItem systemItem="bookmarks" id="nma-qg-s6o">
                             <connections>
-                                <segue destination="0nM-d7-eU3" kind="presentation" modalPresentationStyle="formSheet" id="bOe-ql-Ra8"/>
+                                <segue destination="0nM-d7-eU3" kind="presentation" identifier="showRules" modalPresentationStyle="formSheet" id="bOe-ql-Ra8"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>

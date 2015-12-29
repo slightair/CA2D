@@ -1,6 +1,7 @@
 import UIKit
 
 class RuleListViewController: UITableViewController {
+    var world: World?
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Rule.presets.count
@@ -12,8 +13,16 @@ class RuleListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("RuleCell")!
         cell.textLabel!.text = rule.name
         cell.detailTextLabel!.text = rule.rule
+        cell.accessoryType = world?.rule.name == rule.name ? .Checkmark : .None
 
         return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedRule = Rule.presets[indexPath.row]
+        world?.rule = selectedRule
+
+        tableView.reloadData()
     }
 
     @IBAction func close(sender: AnyObject) {

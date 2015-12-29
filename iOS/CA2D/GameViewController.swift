@@ -2,7 +2,7 @@ import UIKit
 import GLKit
 import Chameleon
 
-final class GameViewController: GLKViewController {
+final class GameViewController: GLKViewController, WorldDelegate {
     var renderer: Renderer!
     var world: World!
     var timer: NSTimer?
@@ -21,6 +21,7 @@ final class GameViewController: GLKViewController {
         let worldHeight = Int(CGRectGetWidth(nativeBounds) / split)
         let selectedRule = Rule.presets.first!
         world = World(width: worldWidth, height: worldHeight, rule: selectedRule)
+        world.delegate = self
 
         renderer = Renderer(context: context, world: world)
 
@@ -57,28 +58,48 @@ final class GameViewController: GLKViewController {
         pauseWorld()
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showRules" {
+            pauseWorld()
+
+            guard let destinationViewController = segue.destinationViewController as? UINavigationController else {
+                return
+            }
+
+            guard let ruleListViewController = destinationViewController.topViewController as? RuleListViewController else {
+                return
+            }
+
+            ruleListViewController.world = world
+        }
+    }
+
     func tickWorld() {
         world.tick()
     }
 
     func startWorld() {
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0 / 20, target: self, selector: "tickWorld", userInfo: nil, repeats: true)
+
+        toolbarItems = [pauseBarButtonItem] + presetToolbarItems!
     }
 
     func pauseWorld() {
         timer?.invalidate()
         timer = nil
+
+        toolbarItems = [playBarButtonItem] + presetToolbarItems!
     }
 
     func didPressPlayButton(sender: AnyObject?) {
         startWorld()
-
-        toolbarItems = [pauseBarButtonItem] + presetToolbarItems!
     }
 
     func didPressPauseButton(sender: AnyObject?) {
         pauseWorld()
+    }
 
-        toolbarItems = [playBarButtonItem] + presetToolbarItems!
+    func world(world: World, didChangeRule rule: Rule) {
+        self.title = rule.name
     }
 }

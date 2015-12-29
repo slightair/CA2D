@@ -1,13 +1,20 @@
 import Foundation
 
+protocol WorldDelegate {
+    func world(world: World, didChangeRule rule: Rule)
+}
+
 final class World {
     let width, height: Int
     var rule: Rule {
         didSet {
             shuffle()
+
+            delegate?.world(self, didChangeRule: rule)
         }
     }
     var cells: [Int]
+    var delegate: WorldDelegate?
 
     init(width: Int, height: Int, rule: Rule) {
         self.width = width

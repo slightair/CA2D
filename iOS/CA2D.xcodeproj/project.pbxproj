@@ -166,6 +166,7 @@
 				5778A57F1C2F9D430019FF99 /* Frameworks */,
 				5778A5801C2F9D430019FF99 /* Resources */,
 				5778A5B31C316F800019FF99 /* Embed Frameworks */,
+				57F5FB3F1C32B68800817824 /* ShellScript */,
 				5778A5B71C316FE20019FF99 /* CopyFiles */,
 			);
 			buildRules = (
@@ -224,6 +225,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		57F5FB3F1C32B68800817824 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Chameleon.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/brew/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5778A57E1C2F9D430019FF99 /* Sources */ = {

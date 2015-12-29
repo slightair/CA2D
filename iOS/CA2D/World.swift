@@ -2,7 +2,11 @@ import Foundation
 
 final class World {
     let width, height: Int
-    let rule: Rule
+    var rule: Rule {
+        didSet {
+            shuffle()
+        }
+    }
     var cells: [Int]
 
     init(width: Int, height: Int, rule: Rule) {

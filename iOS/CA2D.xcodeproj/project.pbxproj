@@ -23,6 +23,7 @@
 		5778A5B01C316F700019FF99 /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5778A5AF1C316F700019FF99 /* Chameleon.framework */; };
 		5778A5B21C316F800019FF99 /* Chameleon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5778A5AF1C316F700019FF99 /* Chameleon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5778A5BC1C3170220019FF99 /* Chameleon.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5778A5BB1C3170220019FF99 /* Chameleon.framework.dSYM */; };
+		5778A5BE1C3175510019FF99 /* RuleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778A5BD1C3175510019FF99 /* RuleListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,6 +68,7 @@
 		5778A5A91C3110370019FF99 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		5778A5AF1C316F700019FF99 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
 		5778A5BB1C3170220019FF99 /* Chameleon.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Chameleon.framework.dSYM; path = Carthage/Build/iOS/Chameleon.framework.dSYM; sourceTree = "<group>"; };
+		5778A5BD1C3175510019FF99 /* RuleListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				5778A5901C2F9D430019FF99 /* Assets.xcassets */,
 				5778A5921C2F9D430019FF99 /* LaunchScreen.storyboard */,
 				5778A5951C2F9D430019FF99 /* Info.plist */,
+				5778A5BD1C3175510019FF99 /* RuleListViewController.swift */,
 			);
 			path = CA2D;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				5778A58C1C2F9D430019FF99 /* GameViewController.swift in Sources */,
 				5778A5A81C2FB59A0019FF99 /* WorldModel.swift in Sources */,
 				5778A59E1C2FA0E60019FF99 /* ShaderProgram.swift in Sources */,
+				5778A5BE1C3175510019FF99 /* RuleListViewController.swift in Sources */,
 				5778A59C1C2FA0C60019FF99 /* Renderer.swift in Sources */,
 				5778A5AA1C3110370019FF99 /* Rule.swift in Sources */,
 				5778A5861C2F9D430019FF99 /* AppDelegate.swift in Sources */,

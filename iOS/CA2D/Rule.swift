@@ -2,10 +2,12 @@ import Foundation
 
 struct Rule {
     let name: String
+    let rule: String
     let survive, born, conditions: Int
 
     init(name: String, rule: String) {
         self.name = name
+        self.rule = rule
 
         let components = rule.componentsSeparatedByString("/")
         guard components.count == 3 else {

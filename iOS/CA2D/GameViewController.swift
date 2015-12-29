@@ -1,6 +1,5 @@
 import UIKit
 import GLKit
-import Chameleon
 
 final class GameViewController: GLKViewController, WorldDelegate {
     var renderer: Renderer!
@@ -39,14 +38,6 @@ final class GameViewController: GLKViewController, WorldDelegate {
     }
 
     func setUpBars() {
-        let barTintColor = UIColor.flatBlackColor()
-
-        navigationController?.navigationBar.barTintColor = barTintColor
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.flatWhiteColor()]
-
-        navigationController?.toolbar.barTintColor = barTintColor
-        navigationController?.toolbar.tintColor = UIColor.flatGrayColor()
-
         playBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Play, target: self, action: "didPressPlayButton:")
         pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Pause, target: self, action: "didPressPauseButton:")
 

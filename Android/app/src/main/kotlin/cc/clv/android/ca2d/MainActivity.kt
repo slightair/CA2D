@@ -34,17 +34,6 @@ class MainActivity : AppCompatActivity() {
     }
     private var mVisible: Boolean = false
     private val mHideRunnable = Runnable { hide() }
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private val mDelayHideTouchListener = View.OnTouchListener { view, motionEvent ->
-        if (AUTO_HIDE) {
-            delayedHide(AUTO_HIDE_DELAY_MILLIS)
-        }
-        false
-    }
 
     private var worldRenderer: WorldRenderer? = null
 
@@ -114,18 +103,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-
-        /**
-         * Whether or not the system UI should be auto-hidden after
-         * [.AUTO_HIDE_DELAY_MILLIS] milliseconds.
-         */
-        private val AUTO_HIDE = true
-
-        /**
-         * If [.AUTO_HIDE] is set, the number of milliseconds to wait after
-         * user interaction before hiding the system UI.
-         */
-        private val AUTO_HIDE_DELAY_MILLIS = 3000
 
         /**
          * Some older devices needs a small delay between UI widget updates

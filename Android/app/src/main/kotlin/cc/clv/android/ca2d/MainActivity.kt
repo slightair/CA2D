@@ -1,6 +1,7 @@
 package cc.clv.android.ca2d
 
 import android.annotation.SuppressLint
+import android.opengl.GLSurfaceView
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
@@ -12,26 +13,24 @@ import android.view.View
  */
 class MainActivity : AppCompatActivity() {
     private val mHideHandler = Handler()
-    private var mContentView: View? = null
+    private var worldView: GLSurfaceView? = null
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
 
         // Note that some of these constants are new as of API 16 (Jelly Bean)
         // and API 19 (KitKat). It is safe to use them, as they are inlined
         // at compile-time and do nothing on earlier devices.
-        mContentView!!.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
+        worldView!!.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
                 or View.SYSTEM_UI_FLAG_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
     }
-    private var mControlsView: View? = null
     private val mShowPart2Runnable = Runnable {
         // Delayed display of UI elements
         val actionBar = supportActionBar
         actionBar?.show()
-        mControlsView!!.visibility = View.VISIBLE
     }
     private var mVisible: Boolean = false
     private val mHideRunnable = Runnable { hide() }
@@ -47,22 +46,23 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
+    private var worldRenderer: WorldRenderer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
 
         mVisible = true
-        mControlsView = findViewById(R.id.fullscreen_content_controls)
-        mContentView = findViewById(R.id.fullscreen_content)
+        worldView = findViewById(R.id.fullscreen_content) as? GLSurfaceView
+        worldView?.setEGLContextClientVersion(2)
+
+        worldRenderer = WorldRenderer(applicationContext)
+        worldView?.setRenderer(worldRenderer)
+        worldView?.renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY
 
         // Set up the user interaction to manually show or hide the system UI.
-        mContentView!!.setOnClickListener { toggle() }
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener)
+        worldView!!.setOnClickListener { toggle() }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -86,7 +86,6 @@ class MainActivity : AppCompatActivity() {
         // Hide UI first
         val actionBar = supportActionBar
         actionBar?.hide()
-        mControlsView!!.visibility = View.GONE
         mVisible = false
 
         // Schedule a runnable to remove the status and navigation bar after a delay
@@ -97,7 +96,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("InlinedApi")
     private fun show() {
         // Show the system bar
-        mContentView!!.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        worldView!!.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
         mVisible = true
 
         // Schedule a runnable to display UI elements after a delay

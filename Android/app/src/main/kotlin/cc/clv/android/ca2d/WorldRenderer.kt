@@ -21,6 +21,7 @@ class WorldRenderer(context: Context) : GLSurfaceView.Renderer {
     private var vertexPosition = 0
     private var vertexBuffer: FloatBuffer? = null
     private var uniformResolution = 0
+    private var uniformBlockSize = 0
 
     override fun onDrawFrame(gl: GL10?) {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f)
@@ -33,6 +34,7 @@ class WorldRenderer(context: Context) : GLSurfaceView.Renderer {
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
         GLES20.glViewport(0, 0, width, height)
         GLES20.glUniform2fv(uniformResolution, 1, floatArrayOf(width.toFloat(), height.toFloat()), 0)
+        GLES20.glUniform2fv(uniformBlockSize, 1, floatArrayOf(width.toFloat() / 8, height.toFloat() / 8), 0)
     }
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
@@ -50,5 +52,6 @@ class WorldRenderer(context: Context) : GLSurfaceView.Renderer {
         vertexBuffer!!.put(vertexes).position(0)
 
         uniformResolution = GLES20.glGetUniformLocation(programId, "resolution")
+        uniformBlockSize = GLES20.glGetUniformLocation(programId, "blockSize")
     }
 }

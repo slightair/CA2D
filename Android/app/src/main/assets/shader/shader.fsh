@@ -1,6 +1,8 @@
 uniform vec2 resolution;
+uniform vec2 blockSize;
 
 void main()
 {
-    gl_FragColor = vec4(gl_FragCoord.xy / resolution.xy, 1.0, 1.0);
+    vec2 blockCoord = floor(gl_FragCoord.xy / blockSize) * blockSize;
+    gl_FragColor = vec4(blockCoord.xy / resolution, 1.0, 1.0);
 }

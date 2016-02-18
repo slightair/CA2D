@@ -13,13 +13,10 @@ class ShaderProgram(context: Context, shaderName: String) {
     var programId: Int = 0
 
     init {
-        programId = GLES20.glCreateProgram()
-        if (programId != 0) {
-            loadShaders(shaderName)
-        }
+        loadShaders(shaderName)
     }
 
-    fun loadShaders(shaderName: String) {
+    private fun loadShaders(shaderName: String) {
         val assets = context.resources.assets
 
         val vertexShaderSource = assets.open("shader/${shaderName}.vsh").reader().use { it.readText() }
@@ -27,15 +24,15 @@ class ShaderProgram(context: Context, shaderName: String) {
 
         val vertexShader = compileShader(GLES20.GL_VERTEX_SHADER, vertexShaderSource)
         if (vertexShader == 0) {
-            programId = 0
             return
         }
 
         val fragmentShader = compileShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderSource)
         if (fragmentShader == 0) {
-            programId = 0
             return
         }
+
+        programId = GLES20.glCreateProgram()
 
         GLES20.glAttachShader(programId, vertexShader)
         GLES20.glAttachShader(programId, fragmentShader)
@@ -62,7 +59,7 @@ class ShaderProgram(context: Context, shaderName: String) {
         GLES20.glDeleteShader(fragmentShader)
     }
 
-    fun compileShader(shaderType: Int, source: String): Int {
+    private fun compileShader(shaderType: Int, source: String): Int {
         var shader = GLES20.glCreateShader(shaderType)
         if (shader != 0) {
             GLES20.glShaderSource(shader, source)

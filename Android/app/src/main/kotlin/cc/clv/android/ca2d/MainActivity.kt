@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit private var worldView: GLSurfaceView
     lateinit private var worldRenderer: WorldRenderer
+    lateinit private var world: World
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +47,8 @@ class MainActivity : AppCompatActivity() {
         worldView = findViewById(R.id.fullscreen_content) as GLSurfaceView
         worldView.setEGLContextClientVersion(2)
 
-        worldRenderer = WorldRenderer(applicationContext)
+        world = World(10, 10)
+        worldRenderer = WorldRenderer(applicationContext, world)
         worldView.setRenderer(worldRenderer)
         worldView.renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY
 

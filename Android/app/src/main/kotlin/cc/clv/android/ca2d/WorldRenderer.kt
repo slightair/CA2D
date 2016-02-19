@@ -9,8 +9,9 @@ import java.nio.FloatBuffer
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
-class WorldRenderer(context: Context) : GLSurfaceView.Renderer {
+class WorldRenderer(context: Context, world: World) : GLSurfaceView.Renderer {
     private val context = context
+    private val world = world
     lateinit private var shaderProgram: ShaderProgram
     private val vertexes = floatArrayOf(
             -1.0f, 1.0f, 0.0f,
@@ -34,7 +35,7 @@ class WorldRenderer(context: Context) : GLSurfaceView.Renderer {
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
         GLES20.glViewport(0, 0, width, height)
         GLES20.glUniform2fv(uniformResolution, 1, floatArrayOf(width.toFloat(), height.toFloat()), 0)
-        GLES20.glUniform2fv(uniformBlockSize, 1, floatArrayOf(width.toFloat() / 8, height.toFloat() / 8), 0)
+        GLES20.glUniform2fv(uniformBlockSize, 1, floatArrayOf(width.toFloat() / world.width, height.toFloat() / world.height), 0)
     }
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {

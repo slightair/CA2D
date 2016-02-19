@@ -25,7 +25,7 @@ final class World {
 
     func shuffle() {
         let rate = 0.1
-        cells = (0..<(width * height)).map { _ in Double(arc4random_uniform(1000)) / 1000.0 < rate ? rule.conditions : 0 }
+        cells = (0..<(width * height)).map { _ in Double(arc4random_uniform(1000)) / 1000.0 < rate ? rule.conditions - 1 : 0 }
     }
 
     func tick() {

@@ -11,7 +11,7 @@ import javax.microedition.khronos.opengles.GL10
 
 class WorldRenderer(context: Context) : GLSurfaceView.Renderer {
     private val context = context
-    private var shaderProgram: ShaderProgram? = null
+    lateinit private var shaderProgram: ShaderProgram
     private val vertexes = floatArrayOf(
             -1.0f, 1.0f, 0.0f,
             -1.0f, -1.0f, 0.0f,
@@ -19,7 +19,7 @@ class WorldRenderer(context: Context) : GLSurfaceView.Renderer {
             1.0f, -1.0f, 0.0f
     )
     private var vertexPosition = 0
-    private var vertexBuffer: FloatBuffer? = null
+    lateinit private var vertexBuffer: FloatBuffer
     private var uniformResolution = 0
     private var uniformBlockSize = 0
 
@@ -40,7 +40,7 @@ class WorldRenderer(context: Context) : GLSurfaceView.Renderer {
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
         shaderProgram = ShaderProgram(context, "shader")
 
-        val programId = shaderProgram!!.programId
+        val programId = shaderProgram.programId
         check(programId != 0)
         GLES20.glUseProgram(programId)
 
@@ -49,7 +49,7 @@ class WorldRenderer(context: Context) : GLSurfaceView.Renderer {
         GLES20.glEnableVertexAttribArray(vertexPosition)
 
         vertexBuffer = ByteBuffer.allocateDirect(vertexes.size * 4).order(ByteOrder.nativeOrder()).asFloatBuffer()
-        vertexBuffer!!.put(vertexes).position(0)
+        vertexBuffer.put(vertexes).position(0)
 
         uniformResolution = GLES20.glGetUniformLocation(programId, "resolution")
         uniformBlockSize = GLES20.glGetUniformLocation(programId, "blockSize")

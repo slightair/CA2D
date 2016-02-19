@@ -13,14 +13,13 @@ import android.view.View
  */
 class MainActivity : AppCompatActivity() {
     private val mHideHandler = Handler()
-    private var worldView: GLSurfaceView? = null
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
 
         // Note that some of these constants are new as of API 16 (Jelly Bean)
         // and API 19 (KitKat). It is safe to use them, as they are inlined
         // at compile-time and do nothing on earlier devices.
-        worldView!!.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
+        worldView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
                 or View.SYSTEM_UI_FLAG_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -35,7 +34,8 @@ class MainActivity : AppCompatActivity() {
     private var mVisible: Boolean = false
     private val mHideRunnable = Runnable { hide() }
 
-    private var worldRenderer: WorldRenderer? = null
+    lateinit private var worldView: GLSurfaceView
+    lateinit private var worldRenderer: WorldRenderer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,15 +43,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mVisible = true
-        worldView = findViewById(R.id.fullscreen_content) as? GLSurfaceView
-        worldView?.setEGLContextClientVersion(2)
+        worldView = findViewById(R.id.fullscreen_content) as GLSurfaceView
+        worldView.setEGLContextClientVersion(2)
 
         worldRenderer = WorldRenderer(applicationContext)
-        worldView?.setRenderer(worldRenderer)
-        worldView?.renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY
+        worldView.setRenderer(worldRenderer)
+        worldView.renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY
 
         // Set up the user interaction to manually show or hide the system UI.
-        worldView!!.setOnClickListener { toggle() }
+        worldView.setOnClickListener { toggle() }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("InlinedApi")
     private fun show() {
         // Show the system bar
-        worldView!!.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        worldView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
         mVisible = true
 
         // Schedule a runnable to display UI elements after a delay

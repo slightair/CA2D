@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import cc.clv.android.ca2d.graphics.WorldRenderer
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.

@@ -1,4 +1,4 @@
-package cc.clv.android.ca2d
+package cc.clv.android.ca2d.graphics
 
 import android.content.Context
 import android.opengl.GLES20

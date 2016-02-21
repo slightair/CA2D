@@ -1,8 +1,10 @@
-package cc.clv.android.ca2d
+package cc.clv.android.ca2d.graphics
 
 import android.content.Context
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView
+import cc.clv.android.ca2d.World
+import cc.clv.android.ca2d.graphics.ShaderProgram
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer

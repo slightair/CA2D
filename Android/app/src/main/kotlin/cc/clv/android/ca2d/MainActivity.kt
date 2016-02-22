@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import cc.clv.android.ca2d.graphics.WorldRenderer
+import cc.clv.android.ca2d.graphics.Renderer
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     private val mHideRunnable = Runnable { hide() }
 
     lateinit private var worldView: GLSurfaceView
-    lateinit private var worldRenderer: WorldRenderer
+    lateinit private var renderer: Renderer
     lateinit private var world: World
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
         worldView.setEGLContextClientVersion(2)
 
         world = World(10, 10)
-        worldRenderer = WorldRenderer(applicationContext, world)
-        worldView.setRenderer(worldRenderer)
+        renderer = Renderer(applicationContext, world)
+        worldView.setRenderer(renderer)
         worldView.renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY
 
         // Set up the user interaction to manually show or hide the system UI.

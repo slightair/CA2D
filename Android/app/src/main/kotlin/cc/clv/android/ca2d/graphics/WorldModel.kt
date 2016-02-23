@@ -49,6 +49,19 @@ class WorldModel(world: World) {
     }
 
     fun colorFromCondition(condition: Int): Color {
-        return Color(1.0f, 1.0f, 0.0f)
+        if (world.rule.conditions <= 2) {
+            return Color(1.0f, 1.0f, 0.0f)
+        }
+
+        val cyan = 0.0f
+        val magenta = 1.0f - (1.0f / (world.rule.conditions - 2).toFloat() * (condition - 1).toFloat())
+        val yellow = 1.0f
+        val key = 0.0f
+
+        val red = 1.0f - arrayOf(1.0f, cyan * (1.0f - key)).min()!! + key
+        val green = 1.0f - arrayOf(1.0f, magenta * (1.0f - key)).min()!! + key
+        val blue = 1.0f - arrayOf(1.0f, yellow * (1.0f - key)).min()!! + key
+
+        return Color(red, green, blue)
     }
 }

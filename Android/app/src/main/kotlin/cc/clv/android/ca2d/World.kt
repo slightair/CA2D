@@ -20,7 +20,7 @@ class World(width: Int, height: Int, rule: Rule) {
         val rate = 0.1
 
         for (i in 0..(width * height - 1)) {
-            cells[i] = if (random.nextDouble() < rate) 1 else 0
+            cells[i] = if (random.nextDouble() < rate) rule.conditions - 1 else 0
         }
     }
 

@@ -7,6 +7,7 @@ import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import cc.clv.android.ca2d.graphics.Renderer
+import kotlin.concurrent.timer
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         worldView = findViewById(R.id.fullscreen_content) as GLSurfaceView
         worldView.setEGLContextClientVersion(2)
 
-        world = World(10, 10, Rule.presets.first())
+        world = World(100, 100, Rule.presets.first())
         renderer = Renderer(applicationContext, world)
         worldView.setRenderer(renderer)
         worldView.renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY
@@ -64,6 +65,10 @@ class MainActivity : AppCompatActivity() {
         // created, to briefly hint to the user that UI controls
         // are available.
         delayedHide(100)
+
+        timer(period = 1000 / 30) {
+            world.tick()
+        }
     }
 
     private fun toggle() {

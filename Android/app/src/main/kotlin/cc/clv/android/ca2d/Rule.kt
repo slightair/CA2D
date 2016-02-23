@@ -51,9 +51,9 @@ data class Rule(val name: String, val rule: String) {
         )
     }
 
-    var survive: Int = 0
-    var born: Int = 0
-    var conditions: Int = 0
+    val survive: Int
+    val born: Int
+    val conditions: Int
 
     init {
         val components = rule.split("/")

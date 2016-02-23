@@ -59,7 +59,7 @@ data class Rule(val name: String, val rule: String) {
         val components = rule.split("/")
         check(components.count() == 3, { "Unexpected rule string" })
 
-        val combine = { result: Int, char: Char -> result + (1.shl(char.toString().toInt())) }
+        val combine = { result: Int, char: Char -> result + (1 shl char.toString().toInt()) }
         survive = components[0].fold(0, combine)
         born = components[1].fold(0, combine)
         conditions = components[2].toInt()

@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         worldView = findViewById(R.id.fullscreen_content) as GLSurfaceView
         worldView.setEGLContextClientVersion(2)
 
-        world = World(10, 10)
+        world = World(10, 10, Rule.presets.first())
         renderer = Renderer(applicationContext, world)
         worldView.setRenderer(renderer)
         worldView.renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY

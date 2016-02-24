@@ -6,6 +6,7 @@ import android.opengl.GLSurfaceView
 import cc.clv.android.ca2d.World
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import java.nio.FloatBuffer
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
@@ -15,6 +16,8 @@ class Renderer(context: Context, world: World) : GLSurfaceView.Renderer {
     lateinit private var shaderProgram: ShaderProgram
     private var vertexPosition = -1
     private var vertexColor = -1
+    lateinit private var positionBuffer: FloatBuffer
+    lateinit private var colorBuffer: FloatBuffer
 
     override fun onDrawFrame(gl: GL10?) {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f)
@@ -42,6 +45,12 @@ class Renderer(context: Context, world: World) : GLSurfaceView.Renderer {
         vertexColor = GLES20.glGetAttribLocation(programId, "color")
         check(vertexColor != -1, { "Failed to get color attribute location" })
         GLES20.glEnableVertexAttribArray(vertexColor)
+
+        positionBuffer = ByteBuffer.allocateDirect(worldModel.maxVertexCount * Position.size)
+                .order(ByteOrder.nativeOrder()).asFloatBuffer()
+
+        colorBuffer = ByteBuffer.allocateDirect(worldModel.maxVertexCount * Color.size)
+                .order(ByteOrder.nativeOrder()).asFloatBuffer()
     }
 
     private fun renderWorld() {
@@ -49,12 +58,10 @@ class Renderer(context: Context, world: World) : GLSurfaceView.Renderer {
         val vertexPositions = modelVertexPositions.flatMap { it.v.asIterable() }
         val vertexColors = modelVertexColors.flatMap { it.v.asIterable() }
 
-        val positionBuffer = ByteBuffer.allocateDirect(modelVertexPositions.size * Position.size)
-                .order(ByteOrder.nativeOrder()).asFloatBuffer()
+        positionBuffer.clear()
         positionBuffer.put(vertexPositions.toFloatArray()).position(0)
 
-        val colorBuffer = ByteBuffer.allocateDirect(modelVertexColors.size * Color.size)
-                .order(ByteOrder.nativeOrder()).asFloatBuffer()
+        colorBuffer.clear()
         colorBuffer.put(vertexColors.toFloatArray()).position(0)
 
         GLES20.glVertexAttribPointer(vertexPosition, 2, GLES20.GL_FLOAT, false, 0, positionBuffer)

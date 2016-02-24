@@ -4,6 +4,7 @@ import cc.clv.android.ca2d.World
 
 class WorldModel(world: World) {
     private val world = world
+    val maxVertexCount: Int get() = world.width * world.height * 6
 
     fun vertices(): Pair<Array<Position>, Array<Color>> {
         val cellWidth = 2.0f / world.width.toFloat()

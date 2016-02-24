@@ -9,7 +9,7 @@ class World(width: Int, height: Int, rule: Rule) {
         set(value) {
             shuffle()
         }
-    var cells = IntArray(width * height)
+    var cells = ByteArray(width * height)
 
     init {
         shuffle()
@@ -20,13 +20,14 @@ class World(width: Int, height: Int, rule: Rule) {
         val rate = 0.1
 
         for (i in 0..(width * height - 1)) {
-            cells[i] = if (random.nextDouble() < rate) rule.conditions - 1 else 0
+            val condMax = (rule.conditions - 1).toByte()
+            cells[i] = if (random.nextDouble() < rate) condMax else 0
         }
     }
 
     fun tick() {
-        var nextCells = IntArray(width * height)
-        val condMax = rule.conditions - 1
+        var nextCells = ByteArray(width * height)
+        val condMax = (rule.conditions - 1).toByte()
 
         fun index(pair: Pair<Int, Int>): Int {
             val (x, y) = pair
@@ -48,13 +49,13 @@ class World(width: Int, height: Int, rule: Rule) {
                 val idx = index(Pair(x, y))
                 val prevCond = cells[idx]
 
-                if (prevCond == 0 && (rule.born and env) > 0) {
+                if (prevCond == 0.toByte() && (rule.born and env) > 0) {
                     nextCells[idx] = condMax
                 } else if (prevCond == condMax && (rule.survive and env) > 0) {
                     nextCells[idx] = condMax
                 } else {
                     if (prevCond > 0) {
-                        nextCells[idx] = prevCond - 1
+                        nextCells[idx] = (prevCond - 1).toByte()
                     }
                 }
             }

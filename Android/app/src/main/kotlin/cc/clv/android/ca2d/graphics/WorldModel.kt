@@ -16,7 +16,7 @@ class WorldModel(world: World) {
             for (x in (0..(world.width - 1))) {
                 val condition = world.cells[y * world.width + x]
 
-                if (condition == 0) {
+                if (condition == 0.toByte()) {
                     continue
                 }
 
@@ -38,7 +38,7 @@ class WorldModel(world: World) {
         return Pair(positions, colors)
     }
 
-    fun colorFromCondition(condition: Int): Color {
+    fun colorFromCondition(condition: Byte): Color {
         if (world.rule.conditions <= 2) {
             return Color(1.0f, 1.0f, 0.0f)
         }

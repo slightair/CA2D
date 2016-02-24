@@ -45,10 +45,8 @@ class Renderer(context: Context, world: World) : GLSurfaceView.Renderer {
     }
 
     private fun renderWorld() {
-        val modelVertexPositions = worldModel.positions()
+        val (modelVertexPositions, modelVertexColors) = worldModel.vertices()
         val vertexPositions = modelVertexPositions.flatMap { it.v.asIterable() }
-
-        val modelVertexColors = worldModel.colors()
         val vertexColors = modelVertexColors.flatMap { it.v.asIterable() }
 
         val positionBuffer = ByteBuffer.allocateDirect(modelVertexPositions.size * Position.size)

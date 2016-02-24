@@ -5,11 +5,12 @@ import cc.clv.android.ca2d.World
 class WorldModel(world: World) {
     private val world = world
 
-    fun positions(): Array<Position> {
+    fun vertices(): Pair<Array<Position>, Array<Color>> {
         val cellWidth = 2.0f / world.width.toFloat()
         val cellHeight = 2.0f / world.height.toFloat()
 
         var positions: Array<Position> = arrayOf()
+        var colors: Array<Color> = arrayOf()
 
         for (y in (0..(world.height - 1))) {
             for (x in (0..(world.width - 1))) {
@@ -28,24 +29,13 @@ class WorldModel(world: World) {
                         posA, posB, posC,
                         posB, posC, posD
                 )
+
+                val color = colorFromCondition(condition)
+                colors += Array(6, { color })
             }
         }
 
-        return positions
-    }
-
-    fun colors(): Array<Color> {
-        var colors: Array<Color> = arrayOf()
-
-        for (condition in world.cells) {
-            if (condition == 0) {
-                continue
-            }
-            val color = colorFromCondition(condition)
-            colors += Array(6, { color })
-        }
-
-        return colors
+        return Pair(positions, colors)
     }
 
     fun colorFromCondition(condition: Int): Color {

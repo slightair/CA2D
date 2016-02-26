@@ -46,27 +46,25 @@ class Renderer(context: Context, world: World) : GLSurfaceView.Renderer {
         check(vertexColor != -1, { "Failed to get color attribute location" })
         GLES20.glEnableVertexAttribArray(vertexColor)
 
-        positionBuffer = ByteBuffer.allocateDirect(worldModel.maxVertexCount * Position.size)
+        positionBuffer = ByteBuffer.allocateDirect(worldModel.maxVertexCount * VertexAttribSet.PositionSize)
                 .order(ByteOrder.nativeOrder()).asFloatBuffer()
 
-        colorBuffer = ByteBuffer.allocateDirect(worldModel.maxVertexCount * Color.size)
+        colorBuffer = ByteBuffer.allocateDirect(worldModel.maxVertexCount * VertexAttribSet.ColorSize)
                 .order(ByteOrder.nativeOrder()).asFloatBuffer()
     }
 
     private fun renderWorld() {
-        val (modelVertexPositions, modelVertexColors) = worldModel.vertices()
-        val vertexPositions = modelVertexPositions.flatMap { it.v.asIterable() }
-        val vertexColors = modelVertexColors.flatMap { it.v.asIterable() }
+        val vertexAttribSet = worldModel.vertexAttribSet()
 
         positionBuffer.clear()
-        positionBuffer.put(vertexPositions.toFloatArray()).position(0)
+        positionBuffer.put(vertexAttribSet.positionArray).position(0)
 
         colorBuffer.clear()
-        colorBuffer.put(vertexColors.toFloatArray()).position(0)
+        colorBuffer.put(vertexAttribSet.colorArray).position(0)
 
         GLES20.glVertexAttribPointer(vertexPosition, 2, GLES20.GL_FLOAT, false, 0, positionBuffer)
         GLES20.glVertexAttribPointer(vertexColor, 3, GLES20.GL_FLOAT, false, 0, colorBuffer)
 
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, modelVertexPositions.count())
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexAttribSet.vertexCount)
     }
 }

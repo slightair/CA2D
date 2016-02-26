@@ -6,12 +6,12 @@ class WorldModel(world: World) {
     private val world = world
     val maxVertexCount: Int get() = world.width * world.height * 6
 
-    fun vertices(): Pair<Array<Position>, Array<Color>> {
+    fun vertexAttribSet(): VertexAttribSet {
         val cellWidth = 2.0f / world.width.toFloat()
         val cellHeight = 2.0f / world.height.toFloat()
 
-        var positions: Array<Position> = arrayOf()
-        var colors: Array<Color> = arrayOf()
+        var positions = floatArrayOf()
+        var colors = floatArrayOf()
 
         for (y in (0..(world.height - 1))) {
             for (x in (0..(world.width - 1))) {
@@ -21,27 +21,32 @@ class WorldModel(world: World) {
                     continue
                 }
 
-                val posA = Position(-1.0f + cellWidth * x.toFloat(), -1.0f + cellHeight * y.toFloat())
-                val posB = Position(-1.0f + cellWidth * x.toFloat(), -1.0f + cellHeight * (y + 1).toFloat())
-                val posC = Position(-1.0f + cellWidth * (x + 1).toFloat(), -1.0f + cellHeight * y.toFloat())
-                val posD = Position(-1.0f + cellWidth * (x + 1).toFloat(), -1.0f + cellHeight * (y + 1).toFloat())
+                val posA = floatArrayOf(-1.0f + cellWidth * x.toFloat(), -1.0f + cellHeight * y.toFloat())
+                val posB = floatArrayOf(-1.0f + cellWidth * x.toFloat(), -1.0f + cellHeight * (y + 1).toFloat())
+                val posC = floatArrayOf(-1.0f + cellWidth * (x + 1).toFloat(), -1.0f + cellHeight * y.toFloat())
+                val posD = floatArrayOf(-1.0f + cellWidth * (x + 1).toFloat(), -1.0f + cellHeight * (y + 1).toFloat())
 
-                positions += arrayOf(
-                        posA, posB, posC,
-                        posB, posC, posD
-                )
+                positions += posA
+                positions += posB
+                positions += posC
+
+                positions += posB
+                positions += posC
+                positions += posD
 
                 val color = colorFromCondition(condition)
-                colors += Array(6, { color })
+                for (i in 0..5) {
+                    colors += color
+                }
             }
         }
 
-        return Pair(positions, colors)
+        return VertexAttribSet(world.cells.size * 6, positions, colors)
     }
 
-    fun colorFromCondition(condition: Byte): Color {
+    fun colorFromCondition(condition: Byte): FloatArray {
         if (world.rule.conditions <= 2) {
-            return Color(1.0f, 1.0f, 0.0f)
+            return floatArrayOf(1.0f, 1.0f, 0.0f)
         }
 
         val cyan = 0.0f
@@ -53,6 +58,6 @@ class WorldModel(world: World) {
         val green = 1.0f - arrayOf(1.0f, magenta * (1.0f - key)).min()!! + key
         val blue = 1.0f - arrayOf(1.0f, yellow * (1.0f - key)).min()!! + key
 
-        return Color(red, green, blue)
+        return floatArrayOf(red, green, blue)
     }
 }

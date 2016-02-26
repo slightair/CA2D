@@ -57,7 +57,7 @@ data class Rule(val name: String, val rule: String) {
 
     init {
         val components = rule.split("/")
-        check(components.count() == 3, { "Unexpected rule string" })
+        check(components.size == 3, { "Unexpected rule string" })
 
         val combine = { result: Int, char: Char -> result + (1 shl char.toString().toInt()) }
         survive = components[0].fold(0, combine)

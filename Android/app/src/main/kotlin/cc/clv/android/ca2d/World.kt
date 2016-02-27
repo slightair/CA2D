@@ -29,8 +29,7 @@ class World(width: Int, height: Int, rule: Rule) {
         var nextCells = ByteArray(width * height)
         val condMax = (rule.conditions - 1).toByte()
 
-        fun index(pair: Pair<Int, Int>): Int {
-            val (x, y) = pair
+        fun index(x: Int, y: Int): Int {
             val adjustX = (x + width) % width
             val adjustY = (y + height) % height
 
@@ -39,14 +38,21 @@ class World(width: Int, height: Int, rule: Rule) {
 
         for (y in 0..(height - 1)) {
             for (x in 0..(width - 1)) {
-                val indexes = arrayOf(
-                        Pair(x - 1, y - 1), Pair(x, y - 1), Pair(x + 1, y - 1),
-                        Pair(x - 1, y), /*     self      */ Pair(x + 1, y),
-                        Pair(x - 1, y + 1), Pair(x, y + 1), Pair(x + 1, y + 1)
-                )
-                val count = indexes.map { if (cells[index(it)] == condMax) 1 else 0 }.sum()
+
+                var count = 0
+                for (t in (y - 1)..(y + 1)) {
+                    for (s in (x - 1)..(x + 1)) {
+                        if (s == x && t == y) {
+                            continue
+                        }
+                        if (cells[index(s, t)] == condMax) {
+                            count++
+                        }
+                    }
+                }
+
                 val env = 1 shl count
-                val idx = index(Pair(x, y))
+                val idx = index(x, y)
                 val prevCond = cells[idx]
 
                 if (prevCond == 0.toByte() && (rule.born and env) > 0) {

@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         worldView = findViewById(R.id.fullscreen_content) as GLSurfaceView
         worldView.setEGLContextClientVersion(2)
 
-        world = World(100, 100, Rule.presets.first())
+        world = World(32, 32, Rule.presets.first())
         renderer = Renderer(applicationContext, world)
         worldView.setRenderer(renderer)
         worldView.renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         // are available.
         delayedHide(100)
 
-        timer(period = 1000 / 30) {
+        timer(period = 1000 / 20) {
             world.tick()
         }
     }

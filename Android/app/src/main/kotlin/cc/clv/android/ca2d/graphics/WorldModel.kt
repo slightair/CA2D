@@ -13,6 +13,7 @@ class WorldModel(world: World) {
         var positions = floatArrayOf()
         var colors = floatArrayOf()
 
+        var vertexCount = 0
         for (y in (0..(world.height - 1))) {
             for (x in (0..(world.width - 1))) {
                 val condition = world.cells[y * world.width + x]
@@ -38,10 +39,12 @@ class WorldModel(world: World) {
                 for (i in 0..5) {
                     colors += color
                 }
+
+                vertexCount += 6
             }
         }
 
-        return VertexAttribSet(world.cells.size * 6, positions, colors)
+        return VertexAttribSet(vertexCount, positions, colors)
     }
 
     fun colorFromCondition(condition: Byte): FloatArray {

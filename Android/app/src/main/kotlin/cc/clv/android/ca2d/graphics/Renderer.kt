@@ -3,6 +3,7 @@ package cc.clv.android.ca2d.graphics
 import android.content.Context
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView
+import android.os.SystemClock
 import cc.clv.android.ca2d.Rule
 import cc.clv.android.ca2d.World
 import java.nio.ByteBuffer
@@ -12,8 +13,13 @@ import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
 class Renderer(context: Context) : GLSurfaceView.Renderer {
+    companion object {
+        val cellSize = 32
+        val updateTimeThreshold = 1000 / 30
+    }
+
     private val context = context
-    var world: World? = null
+    private var world: World? = null
         set(value) {
             field = value
             worldModel = if (value != null) WorldModel(value) else null
@@ -24,8 +30,15 @@ class Renderer(context: Context) : GLSurfaceView.Renderer {
     private var vertexColor = -1
     lateinit private var positionBuffer: FloatBuffer
     lateinit private var colorBuffer: FloatBuffer
+    private var lastTime: Long = 0
 
     override fun onDrawFrame(gl: GL10?) {
+        val frameTime = SystemClock.elapsedRealtime();
+        if (frameTime - lastTime > Renderer.updateTimeThreshold) {
+            world?.tick()
+            lastTime = frameTime
+        }
+
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f)
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT or GLES20.GL_DEPTH_BUFFER_BIT)
 
@@ -37,9 +50,7 @@ class Renderer(context: Context) : GLSurfaceView.Renderer {
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
         GLES20.glViewport(0, 0, width, height)
 
-        val cellSize = 32
-        world = World(width / cellSize, height / cellSize, Rule.starwars)
-
+        world = World(width / Renderer.cellSize, height / Renderer.cellSize, Rule.starwars)
         if (worldModel != null) {
             positionBuffer = ByteBuffer.allocateDirect(worldModel!!.maxVertexCount * VertexAttribSet.PositionSize)
                     .order(ByteOrder.nativeOrder()).asFloatBuffer()

@@ -49,6 +49,9 @@ data class Rule(val name: String, val rule: String) {
                 Rule("Worms", "3467/25/6"),
                 Rule("Xtasy", "1456/2356/16")
         )
+
+        val starwars = presets[36]
+        val life = presets[23]
     }
 
     val survive: Int

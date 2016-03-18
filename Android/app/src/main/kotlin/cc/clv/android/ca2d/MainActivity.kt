@@ -6,6 +6,7 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import cc.clv.android.ca2d.graphics.Renderer
@@ -13,6 +14,7 @@ import cc.clv.android.ca2d.graphics.Renderer
 class MainActivity : AppCompatActivity() {
     lateinit private var drawerLayout: DrawerLayout
     lateinit private var drawerList: ListView
+    lateinit private var headerView: View
     lateinit private var drawerToggle: ActionBarDrawerToggle
     lateinit private var worldView: GLSurfaceView
     lateinit private var renderer: Renderer
@@ -31,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
+        headerView = layoutInflater.inflate(R.layout.drawer_header, null) as View
+
+        drawerList.addHeaderView(headerView)
         drawerList.adapter = ArrayAdapter<String>(this, R.layout.drawer_list_item, Rule.presets.map { it.name })
 
         worldView = findViewById(R.id.fullscreen_content) as GLSurfaceView

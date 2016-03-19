@@ -10,6 +10,8 @@ class World(width: Int, height: Int, rule: Rule) {
             shuffle()
         }
     var cells = ByteArray(width * height)
+    var running = false
+        private set
 
     init {
         shuffle()
@@ -67,5 +69,9 @@ class World(width: Int, height: Int, rule: Rule) {
             }
         }
         cells = nextCells
+    }
+
+    fun toggleRunning() {
+        running = !running
     }
 }

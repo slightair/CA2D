@@ -19,7 +19,7 @@ class Renderer(context: Context) : GLSurfaceView.Renderer {
     }
 
     private val context = context
-    private var world: World? = null
+    var world: World? = null
         set(value) {
             field = value
             worldModel = if (value != null) WorldModel(value) else null
@@ -34,7 +34,7 @@ class Renderer(context: Context) : GLSurfaceView.Renderer {
 
     override fun onDrawFrame(gl: GL10?) {
         val frameTime = SystemClock.elapsedRealtime();
-        if (frameTime - lastTime > Renderer.updateTimeThreshold) {
+        if (world?.running!! && frameTime - lastTime > Renderer.updateTimeThreshold) {
             world?.tick()
             lastTime = frameTime
         }

@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.HeaderViewListAdapter
 import android.widget.ListView
 import cc.clv.android.ca2d.graphics.Renderer
 
@@ -47,6 +48,21 @@ class MainActivity : AppCompatActivity() {
         worldView.setRenderer(renderer)
         worldView.renderMode = GLSurfaceView.RENDERMODE_CONTINUOUSLY
 
+        changeActionBarTitle(Rule.starwars)
+
+        drawerListView.setOnItemClickListener { adapterView, view, position, id ->
+            val headerViewListAdapter = adapterView.adapter as HeaderViewListAdapter
+            val itemPosition = position - headerViewListAdapter.headersCount
+
+            if (itemPosition >= 0 && itemPosition < Rule.presets.count()) {
+                val selectedRule = Rule.presets[itemPosition]
+
+                renderer.world?.rule = selectedRule
+                changeActionBarTitle(selectedRule)
+                drawerLayout.closeDrawers()
+            }
+        }
+
         worldView.setOnTouchListener { view, motionEvent ->
             val action = MotionEventCompat.getActionMasked(motionEvent)
             when (action) {
@@ -64,5 +80,9 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun changeActionBarTitle(rule: Rule) {
+        supportActionBar?.title = "CA2D - " + rule.name
     }
 }

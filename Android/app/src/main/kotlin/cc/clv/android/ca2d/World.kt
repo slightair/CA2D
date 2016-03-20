@@ -7,6 +7,8 @@ class World(width: Int, height: Int, rule: Rule) {
     val height = height
     var rule = rule
         set(value) {
+            field = value
+            running = false
             shuffle()
         }
     var cells = ByteArray(width * height)
@@ -21,10 +23,12 @@ class World(width: Int, height: Int, rule: Rule) {
         val random = Random()
         val rate = 0.1
 
+        var newCells = ByteArray(width * height)
         for (i in 0..(width * height - 1)) {
             val condMax = (rule.conditions - 1).toByte()
-            cells[i] = if (random.nextDouble() < rate) condMax else 0
+            newCells[i] = if (random.nextDouble() < rate) condMax else 0
         }
+        cells = newCells
     }
 
     fun tick() {
@@ -68,7 +72,10 @@ class World(width: Int, height: Int, rule: Rule) {
                 }
             }
         }
-        cells = nextCells
+
+        if (running) {
+            cells = nextCells
+        }
     }
 
     fun toggleRunning() {

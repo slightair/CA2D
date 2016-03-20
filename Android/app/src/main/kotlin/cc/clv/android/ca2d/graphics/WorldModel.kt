@@ -31,18 +31,13 @@ class WorldModel(world: World) {
         colorBuffer.clear()
         vertexCount = 0
 
-        val width = world.width
-        val height = world.height
-        val rule = world.rule
-        val cells = world.cells
+        val cellWidth = 2.0f / world.width.toFloat()
+        val cellHeight = 2.0f / world.height.toFloat()
+        val colors = (0..world.rule.conditions).map { colorFromCondition(it) }
 
-        val cellWidth = 2.0f / width.toFloat()
-        val cellHeight = 2.0f / height.toFloat()
-        val colors = (0..rule.conditions).map { colorFromCondition(it) }
-
-        for (y in (0..(height - 1))) {
-            for (x in (0..(width - 1))) {
-                val condition = cells[y * width + x]
+        for (y in (0..(world.height - 1))) {
+            for (x in (0..(world.width - 1))) {
+                val condition = world.cells[y * world.width + x]
 
                 if (condition == 0.toByte()) {
                     continue

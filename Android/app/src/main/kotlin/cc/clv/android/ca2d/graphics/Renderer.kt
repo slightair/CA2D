@@ -8,6 +8,7 @@ import cc.clv.android.ca2d.Rule
 import cc.clv.android.ca2d.World
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
+import kotlin.concurrent.withLock
 
 class Renderer(context: Context) : GLSurfaceView.Renderer {
     companion object {
@@ -65,11 +66,13 @@ class Renderer(context: Context) : GLSurfaceView.Renderer {
 
     private fun renderWorld() {
         worldModel?.let {
-            it.update()
+            world!!.lock.withLock {
+                it.update()
 
-            GLES20.glVertexAttribPointer(vertexPosition, 2, GLES20.GL_FLOAT, false, 0, it.positionBuffer.position(0))
-            GLES20.glVertexAttribPointer(vertexColor, 3, GLES20.GL_FLOAT, false, 0, it.colorBuffer.position(0))
-            GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, it.vertexCount)
+                GLES20.glVertexAttribPointer(vertexPosition, 2, GLES20.GL_FLOAT, false, 0, it.positionBuffer.position(0))
+                GLES20.glVertexAttribPointer(vertexColor, 3, GLES20.GL_FLOAT, false, 0, it.colorBuffer.position(0))
+                GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, it.vertexCount)
+            }
         }
     }
 }

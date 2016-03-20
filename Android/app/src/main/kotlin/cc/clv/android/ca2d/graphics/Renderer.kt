@@ -12,7 +12,7 @@ import kotlin.concurrent.withLock
 
 class Renderer(context: Context) : GLSurfaceView.Renderer {
     companion object {
-        val cellSize = 32
+        val cellSize = 16
         val updateTimeThreshold = 1000 / 30
     }
 

@@ -1,22 +1,48 @@
 package cc.clv.android.ca2d.graphics
 
 import cc.clv.android.ca2d.World
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
+import java.nio.FloatBuffer
 
 class WorldModel(world: World) {
+    companion object {
+        val PositionSize = 4 * 2
+        val ColorSize = 4 * 3
+    }
+
     private val world = world
-    val maxVertexCount: Int get() = world.width * world.height * 6
+    private val maxVertexCount: Int
+        get() = world.width * world.height * 6
 
-    fun vertexAttribSet(): VertexAttribSet {
-        val cellWidth = 2.0f / world.width.toFloat()
-        val cellHeight = 2.0f / world.height.toFloat()
+    var vertexCount: Int = 0
+    var positionBuffer: FloatBuffer
+    var colorBuffer: FloatBuffer
 
-        var positions = floatArrayOf()
-        var colors = floatArrayOf()
+    init {
+        positionBuffer = ByteBuffer.allocateDirect(maxVertexCount * PositionSize)
+                .order(ByteOrder.nativeOrder()).asFloatBuffer()
+        colorBuffer = ByteBuffer.allocateDirect(maxVertexCount * ColorSize)
+                .order(ByteOrder.nativeOrder()).asFloatBuffer()
+    }
 
-        var vertexCount = 0
-        for (y in (0..(world.height - 1))) {
-            for (x in (0..(world.width - 1))) {
-                val condition = world.cells[y * world.width + x]
+    fun update() {
+        positionBuffer.clear()
+        colorBuffer.clear()
+        vertexCount = 0
+
+        val width = world.width
+        val height = world.height
+        val rule = world.rule
+        val cells = world.cells
+
+        val cellWidth = 2.0f / width.toFloat()
+        val cellHeight = 2.0f / height.toFloat()
+        val colors = (0..rule.conditions).map { colorFromCondition(it) }
+
+        for (y in (0..(height - 1))) {
+            for (x in (0..(width - 1))) {
+                val condition = cells[y * width + x]
 
                 if (condition == 0.toByte()) {
                     continue
@@ -27,27 +53,32 @@ class WorldModel(world: World) {
                 val posC = floatArrayOf(-1.0f + cellWidth * (x + 1).toFloat(), -1.0f + cellHeight * y.toFloat())
                 val posD = floatArrayOf(-1.0f + cellWidth * (x + 1).toFloat(), -1.0f + cellHeight * (y + 1).toFloat())
 
-                positions += posA
-                positions += posB
-                positions += posC
+                val color = colors[condition.toInt()]
 
-                positions += posB
-                positions += posC
-                positions += posD
+                positionBuffer.put(posA)
+                colorBuffer.put(color)
 
-                val color = colorFromCondition(condition)
-                for (i in 0..5) {
-                    colors += color
-                }
+                positionBuffer.put(posB)
+                colorBuffer.put(color)
+
+                positionBuffer.put(posC)
+                colorBuffer.put(color)
+
+                positionBuffer.put(posB)
+                colorBuffer.put(color)
+
+                positionBuffer.put(posC)
+                colorBuffer.put(color)
+
+                positionBuffer.put(posD)
+                colorBuffer.put(color)
 
                 vertexCount += 6
             }
         }
-
-        return VertexAttribSet(vertexCount, positions, colors)
     }
 
-    fun colorFromCondition(condition: Byte): FloatArray {
+    fun colorFromCondition(condition: Int): FloatArray {
         if (world.rule.conditions <= 2) {
             return floatArrayOf(1.0f, 1.0f, 0.0f)
         }

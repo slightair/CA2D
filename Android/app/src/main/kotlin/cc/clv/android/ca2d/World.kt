@@ -73,9 +73,7 @@ class World(width: Int, height: Int, rule: Rule) {
             }
         }
 
-        if (running) {
-            cells = nextCells
-        }
+        cells = nextCells
     }
 
     fun toggleRunning() {

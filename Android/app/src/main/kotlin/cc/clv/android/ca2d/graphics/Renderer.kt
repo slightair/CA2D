@@ -6,9 +6,6 @@ import android.opengl.GLSurfaceView
 import android.os.SystemClock
 import cc.clv.android.ca2d.Rule
 import cc.clv.android.ca2d.World
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
-import java.nio.FloatBuffer
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
@@ -28,8 +25,6 @@ class Renderer(context: Context) : GLSurfaceView.Renderer {
     lateinit private var shaderProgram: ShaderProgram
     private var vertexPosition = -1
     private var vertexColor = -1
-    lateinit private var positionBuffer: FloatBuffer
-    lateinit private var colorBuffer: FloatBuffer
     private var lastTime: Long = 0
 
     override fun onDrawFrame(gl: GL10?) {
@@ -51,13 +46,6 @@ class Renderer(context: Context) : GLSurfaceView.Renderer {
         GLES20.glViewport(0, 0, width, height)
 
         world = World(width / Renderer.cellSize, height / Renderer.cellSize, Rule.starwars)
-        if (worldModel != null) {
-            positionBuffer = ByteBuffer.allocateDirect(worldModel!!.maxVertexCount * VertexAttribSet.PositionSize)
-                    .order(ByteOrder.nativeOrder()).asFloatBuffer()
-
-            colorBuffer = ByteBuffer.allocateDirect(worldModel!!.maxVertexCount * VertexAttribSet.ColorSize)
-                    .order(ByteOrder.nativeOrder()).asFloatBuffer()
-        }
     }
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
@@ -76,21 +64,12 @@ class Renderer(context: Context) : GLSurfaceView.Renderer {
     }
 
     private fun renderWorld() {
-        if (worldModel == null) {
-            return
+        worldModel?.let {
+            it.update()
+
+            GLES20.glVertexAttribPointer(vertexPosition, 2, GLES20.GL_FLOAT, false, 0, it.positionBuffer.position(0))
+            GLES20.glVertexAttribPointer(vertexColor, 3, GLES20.GL_FLOAT, false, 0, it.colorBuffer.position(0))
+            GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, it.vertexCount)
         }
-
-        val vertexAttribSet = worldModel!!.vertexAttribSet()
-
-        positionBuffer.clear()
-        positionBuffer.put(vertexAttribSet.positionArray).position(0)
-
-        colorBuffer.clear()
-        colorBuffer.put(vertexAttribSet.colorArray).position(0)
-
-        GLES20.glVertexAttribPointer(vertexPosition, 2, GLES20.GL_FLOAT, false, 0, positionBuffer)
-        GLES20.glVertexAttribPointer(vertexColor, 3, GLES20.GL_FLOAT, false, 0, colorBuffer)
-
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexAttribSet.vertexCount)
     }
 }

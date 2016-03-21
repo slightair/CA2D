@@ -4,9 +4,7 @@ import java.util.*
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
-class World(width: Int, height: Int, rule: Rule) {
-    val width = width
-    val height = height
+class World(val width: Int, val height: Int, rule: Rule) {
     var rule = rule
         set(value) {
             lock.withLock {

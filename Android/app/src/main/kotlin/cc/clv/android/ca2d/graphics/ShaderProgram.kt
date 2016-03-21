@@ -4,12 +4,11 @@ import android.content.Context
 import android.opengl.GLES20
 import android.util.Log
 
-class ShaderProgram(context: Context, shaderName: String) {
+class ShaderProgram(val context: Context, shaderName: String) {
     companion object {
         val TAG = "ShaderProgram"
     }
 
-    val context = context
     var programId: Int = 0
 
     init {

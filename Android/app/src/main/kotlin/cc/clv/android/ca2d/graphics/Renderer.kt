@@ -10,13 +10,12 @@ import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 import kotlin.concurrent.withLock
 
-class Renderer(context: Context) : GLSurfaceView.Renderer {
+class Renderer(val context: Context) : GLSurfaceView.Renderer {
     companion object {
         val cellSize = 16
         val updateTimeThreshold = 1000 / 30
     }
 
-    private val context = context
     var world: World? = null
         set(value) {
             field = value

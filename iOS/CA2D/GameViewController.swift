@@ -1,10 +1,10 @@
 import UIKit
-import GLKit
+import MetalKit
 
-final class GameViewController: GLKViewController, WorldDelegate {
+final class GameViewController: UIViewController {
     var renderer: Renderer!
     var world: World!
-    var timer: NSTimer?
+    var timer: Timer?
     var playBarButtonItem: UIBarButtonItem!
     var pauseBarButtonItem: UIBarButtonItem!
     var presetToolbarItems: [UIBarButtonItem]?
@@ -12,34 +12,47 @@ final class GameViewController: GLKViewController, WorldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let context = EAGLContext(API: .OpenGLES3)
-
-        let nativeBounds = UIScreen.mainScreen().nativeBounds
-        let split = 4 * UIScreen.mainScreen().scale
-        let worldWidth = Int(CGRectGetHeight(nativeBounds) / split)
-        let worldHeight = Int(CGRectGetWidth(nativeBounds) / split)
         let selectedRule = Rule.presets.first!
-        world = World(width: worldWidth, height: worldHeight, rule: selectedRule)
-        world.delegate = self
-
-        renderer = Renderer(context: context, world: world)
-
-        let glkView = view as! GLKView
-        glkView.delegate = renderer
-        glkView.context = context
-        glkView.drawableColorFormat = .SRGBA8888
-        glkView.drawableDepthFormat = .Format24
-
         self.title = selectedRule.name
 
-        setUpBars()
+        let nativeBounds = UIScreen.main.nativeBounds
+        let cellSize = 4 * UIScreen.main.scale
+        let worldWidth = Int(ceil(nativeBounds.height / cellSize))
+        let worldHeight = Int(ceil(nativeBounds.width / cellSize))
 
+        world = World(width: worldWidth, height: worldHeight, rule: selectedRule)
+        world.delegate = self
         world.shuffle()
+
+        setUpMetal(cellSize: cellSize)
+        setUpBars()
     }
 
-    func setUpBars() {
-        playBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Play, target: self, action: "didPressPlayButton:")
-        pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Pause, target: self, action: "didPressPauseButton:")
+    private func setUpMetal(cellSize: CGFloat) {
+        guard let mtkView = view as? MTKView else {
+            fatalError("view is not MTKView")
+        }
+
+        guard let defaultDevice = MTLCreateSystemDefaultDevice() else {
+            fatalError("Metal is not supported")
+        }
+
+        mtkView.device = defaultDevice
+        mtkView.backgroundColor = .black
+
+        guard let renderer = Renderer(view: mtkView, world: world, cellSize: cellSize) else {
+            fatalError("Renderer cannot be initialized")
+        }
+
+        renderer.mtkView(mtkView, drawableSizeWillChange: mtkView.drawableSize)
+        self.renderer = renderer
+
+        mtkView.delegate = renderer
+    }
+
+    private func setUpBars() {
+        playBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(didPressPlayButton(sender:)))
+        pauseBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(didPressPauseButton(sender:)))
 
         presetToolbarItems = toolbarItems
         toolbarItems = [playBarButtonItem] + presetToolbarItems!
@@ -49,11 +62,11 @@ final class GameViewController: GLKViewController, WorldDelegate {
         pauseWorld()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showRules" {
             pauseWorld()
 
-            guard let destinationViewController = segue.destinationViewController as? UINavigationController else {
+            guard let destinationViewController = segue.destination as? UINavigationController else {
                 return
             }
 
@@ -65,32 +78,34 @@ final class GameViewController: GLKViewController, WorldDelegate {
         }
     }
 
-    func tickWorld() {
+    @objc private func tickWorld() {
         world.tick()
     }
 
-    func startWorld() {
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0 / 20, target: self, selector: "tickWorld", userInfo: nil, repeats: true)
+    private func startWorld() {
+        timer = Timer.scheduledTimer(timeInterval: 1.0 / 20, target: self, selector: #selector(tickWorld), userInfo: nil, repeats: true)
 
         toolbarItems = [pauseBarButtonItem] + presetToolbarItems!
     }
 
-    func pauseWorld() {
+    private func pauseWorld() {
         timer?.invalidate()
         timer = nil
 
         toolbarItems = [playBarButtonItem] + presetToolbarItems!
     }
 
-    func didPressPlayButton(sender: AnyObject?) {
+    @objc private func didPressPlayButton(sender: AnyObject?) {
         startWorld()
     }
 
-    func didPressPauseButton(sender: AnyObject?) {
+    @objc private func didPressPauseButton(sender: AnyObject?) {
         pauseWorld()
     }
+}
 
-    func world(world: World, didChangeRule rule: Rule) {
+extension GameViewController: WorldDelegate {
+    func world(_ world: World, didChangeRule rule: Rule) {
         self.title = rule.name
     }
 }

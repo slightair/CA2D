@@ -9,15 +9,15 @@ struct Rule {
         self.name = name
         self.rule = rule
 
-        let components = rule.componentsSeparatedByString("/")
+        let components = rule.components(separatedBy: "/")
         guard components.count == 3 else {
             fatalError("Unexpected rule string")
         }
 
         let combine = {(result: Int, item: Character) -> Int in result + (1 << (Int(String(item))!))}
 
-        self.survive = components[0].characters.reduce(0, combine: combine)
-        self.born = components[1].characters.reduce(0, combine: combine)
+        self.survive = components[0].reduce(0, combine)
+        self.born = components[1].reduce(0, combine)
         self.conditions = Int(components[2])!
     }
 

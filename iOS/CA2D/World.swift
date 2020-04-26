@@ -1,7 +1,7 @@
 import Foundation
 
-protocol WorldDelegate {
-    func world(world: World, didChangeRule rule: Rule)
+protocol WorldDelegate: AnyObject {
+    func world(_ world: World, didChangeRule rule: Rule)
 }
 
 final class World {
@@ -14,13 +14,13 @@ final class World {
         }
     }
     var cells: [Int]
-    var delegate: WorldDelegate?
+    weak var delegate: WorldDelegate?
 
     init(width: Int, height: Int, rule: Rule) {
         self.width = width
         self.height = height
         self.rule = rule
-        self.cells = [Int](count: width * height, repeatedValue: 0)
+        self.cells = Array(repeating: 0, count: width * height)
     }
 
     func shuffle() {
@@ -29,10 +29,10 @@ final class World {
     }
 
     func tick() {
-        var nextCells = [Int](count: self.width * self.height, repeatedValue: 0)
+        var nextCells: [Int] = Array(repeating: 0, count: cells.count)
         let condMax = rule.conditions - 1
 
-        func index(idx: (Int, Int)) -> Int {
+        func index(_ idx: (Int, Int)) -> Int {
             let (x, y) = idx
             let adjustX = (x + width) % width
             let adjustY = (y + height) % height
